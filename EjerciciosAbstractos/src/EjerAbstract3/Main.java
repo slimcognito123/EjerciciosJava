@@ -21,9 +21,7 @@ public class Main {
             return scan.nextInt();
         }catch(Exception e){
             System.out.println("eso no es una opcion");
-        }finally {
-            return -1;
         }
-
+        return -1;
     }
 }

@@ -50,7 +50,7 @@ public class MenuCompania extends Menu {
             error = false;
             try {
                 tipo = Integer.parseInt(pedirDatos("tipo de vehiculo a introducir:\n1.Coche\n2.Moto\n3.Furgoneta"));
-                if (tipo != 1 || tipo != 2 || tipo != 3) {
+                if (tipo != 1 && tipo != 2 && tipo != 3) {
                     System.out.println("Opcion no valida");
                     error = true;
                 }
@@ -62,6 +62,29 @@ public class MenuCompania extends Menu {
 
         matricula = pedirDatos("introduce matricula");
 
+
+        if (tipo == 1) {
+            listaVehiculos.add(new Coche(matricula, kilometraje, estado));
+        } else if (tipo == 2) {
+            listaVehiculos.add(new Moto(matricula, kilometraje, estado));
+        } else {
+            int capacidad = 0;
+            do {
+                error = false;
+                try {
+                    capacidad = Integer.parseInt(pedirDatos("Cuanta carga tiene la furgoneta?"));
+                } catch (Exception e) {
+                    System.out.println("eso no es un numero!");
+                    error = true;
+                }
+            } while (error);
+            listaVehiculos.add(new Furgoneta(matricula, kilometraje, estado, capacidad));
+        }
+    }
+
+    private int getKilometraje() {
+        boolean error;
+        int kilometraje = 0;
         do {
             error = false;
             try {
@@ -71,46 +94,28 @@ public class MenuCompania extends Menu {
                 error = true;
             }
         } while (error);
+        return kilometraje;
+    }
 
-        if (tipo == 1) {
-            boolean extras = false;
-            do {
-                error = false;
-                String tieneExtras = pedirDatos("el coche tiene extras? Y or N");
-                if (tieneExtras == "Y") extras = true;
-                else if (tieneExtras == "N") extras = false;
-                else {
-                    System.out.println("esa no es una opcion valida");
-                    error = true;
-                }
-            } while (error);
-            listaVehiculos.add(new Coche(matricula, kilometraje, estado, extras));
+    private boolean hasComplements(String dato, String x) {
+        boolean error;
+        boolean tieneCasco = false;
+        do {
+            error = false;
+            String casco = pedirDatos(dato);
+            if (casco.equals("Y") || casco.compareTo("y") == 0) tieneCasco = true;
+            else if (casco.equals("N") || casco.compareTo("n") == 0) tieneCasco = false;
+            else {
+                System.out.println(x);
+                error = true;
+            }
+        } while (error);
+        return tieneCasco;
+    }
 
-        } else if (tipo == 2) {
-            boolean tieneCasco = false;
-            do {
-                error = false;
-                String casco = pedirDatos("la moto tiene casco? Y or N");
-                if (casco == "Y") tieneCasco = true;
-                else if (casco == "N") tieneCasco = false;
-                else {
-                    System.out.println("esa no es una opcion valida");
-                    error = true;
-                }
-            } while (error);
-            listaVehiculos.add(new Moto(matricula, kilometraje, estado, tieneCasco));
-        } else {
-            int capacidad = 0;
-            do {
-                error = false;
-                try {
-                    capacidad = Integer.parseInt(pedirDatos("el coche tiene extras? Y or N"));
-                } catch (Exception e) {
-                    System.out.println("eso no es un numero!");
-                }
-            } while (error);
-            listaVehiculos.add(new Furgoneta(matricula, kilometraje, estado, capacidad));
-        }
+    private boolean isExtras() {
+        boolean extras = hasComplements("el coche tiene extras? Y or N", "esa no es una opcion valida\n");
+        return extras;
     }
 
     private String pedirDatos(String dato) {
@@ -123,41 +128,61 @@ public class MenuCompania extends Menu {
     private void alquilarVehiculos() {
         for (Vehiculo vehiculo : listaVehiculos) {
             if (!vehiculo.isAlquilao()) {
-                System.out.println("\n"+vehiculo.mostrarDatos());
+                if (vehiculo instanceof Moto)
+                    System.out.println("\nMoto:");
+                else if (vehiculo instanceof Coche)
+                    System.out.println("\nCoche:");
+                else
+                    System.out.println("\nFurgoneta:");
+                System.out.println(vehiculo.mostrarDatos());
             }
         }
         String matricula = pedirDatos("\nelije un vehiculo de la lista escribiendo la matricula");
-        boolean alquiler=false;
+        boolean alquiler = false;
         for (Vehiculo vehiculo : listaVehiculos) {
-            if(!vehiculo.isAlquilao()&&vehiculo.getMatricula().equals(matricula)){
+            if (!vehiculo.isAlquilao() && vehiculo.getMatricula().equals(matricula)) {
                 vehiculo.Alquilar();
-                alquiler=true;
+                if (vehiculo instanceof Moto)
+                    ((Moto) vehiculo).setTieneCasco(hasComplements("la moto tiene casco? Y or N", "esa no es una opcion valida"));
+                else if (vehiculo instanceof Coche) ((Coche) vehiculo).setHasExtras(isExtras());
+                alquiler = true;
             }
         }
-        if(!alquiler)System.out.println("se metio una matricula incorrecta o de un coche ya alquilado\n");
+        if (!alquiler) System.out.println("se metio una matricula incorrecta o de un coche ya alquilado\n");
     }
 
     private void devolverVehiculo() {
         for (Vehiculo vehiculo : listaVehiculos) {
             if (vehiculo.isAlquilao()) {
-                System.out.println("\n"+vehiculo.mostrarDatos());
+                System.out.println("\n" + vehiculo.mostrarDatos() + "\n");
             }
         }
         String matricula = pedirDatos("\nelije un vehiculo de la lista escribiendo la matricula");
-        boolean alquiler=false;
+        boolean alquiler = false;
         for (Vehiculo vehiculo : listaVehiculos) {
-            if(!vehiculo.isAlquilao()&&vehiculo.getMatricula().equals(matricula)){
+            if (vehiculo.isAlquilao() && vehiculo.getMatricula().equals(matricula)) {
+                int kilometraje = getKilometraje();
+                vehiculo.setKilometraje(kilometraje);
                 vehiculo.devolver();
-                System.out.println("debes pagar "+vehiculo.calcularAlquiler(100)+"por tus 100 kms");
-                alquiler=true;
+                System.out.println("debes pagar " + vehiculo.calcularAlquiler() + " por tus " + vehiculo.getKilometraje() + " kms\n");
+                alquiler = true;
             }
         }
-        if(!alquiler)System.out.println("se metio una matricula incorrecta o de un coche sin alquilar\n");
+        if (!alquiler) System.out.println("se metio una matricula incorrecta o de un coche sin alquilar\n");
     }
 
     private void mostrarVehiculos() {
         for (Vehiculo vehiculo : listaVehiculos) {
-            System.out.println(vehiculo.mostrarDatos());
+            if (!vehiculo.isAlquilao()) {
+                if (vehiculo instanceof Moto)
+                    System.out.println("\nMoto:");
+                else if (vehiculo instanceof Coche)
+                    System.out.println("\nCoche:");
+                else
+                    System.out.println("\nFurgoneta:");
+                System.out.println(vehiculo.mostrarDatos());
+            }
         }
+        System.out.println("\n");
     }
 }

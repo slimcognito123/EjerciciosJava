@@ -2,6 +2,8 @@ package EjerAbstract3;
 
 public abstract class Vehiculo {
     private String matricula;
+
+
     private int kilometraje;
     private boolean isAlquilao;
 
@@ -28,9 +30,17 @@ public abstract class Vehiculo {
         return "matricula: " + matricula + "\nkilometros:" + kilometraje + "\nesta alquilado:" + isAlquilao;
     }
 
-    public abstract float calcularAlquiler(float kilometros);
+    public abstract float calcularAlquiler();
 
     public String getMatricula() {
         return matricula;
+    }
+
+    public int getKilometraje() {
+        return kilometraje;
+    }
+
+    public void setKilometraje(int kilometraje) {
+        this.kilometraje = kilometraje;
     }
 }

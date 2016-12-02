@@ -1,23 +1,27 @@
 package EjerAbstract3;
 
 public class Moto extends Vehiculo {
-    final float CON_CASCO = 0.6f;
-    final float SIN_CASCO = 10f;
+    final float CON_CASCO = 10f;
+    final float SIN_CASCO = 0.6f;
+
     private boolean tieneCasco;
 
-    public Moto(String matricula, int kilometraje, boolean isAlquilao, boolean tieneCasco) {
+    public Moto(String matricula, int kilometraje, boolean isAlquilao) {
         super(matricula, kilometraje, isAlquilao);
-        this.tieneCasco = tieneCasco;
     }
 
     @Override
-    public float calcularAlquiler(float km) {
-        if (tieneCasco) return km * CON_CASCO;
-        else return km * SIN_CASCO;
+    public float calcularAlquiler() {
+        if (tieneCasco) return getKilometraje() * SIN_CASCO+CON_CASCO;
+        else return getKilometraje() * SIN_CASCO;
     }
 
     @Override
     public String mostrarDatos() {
-        return super.mostrarDatos() + "\ntiene casco: " + tieneCasco;
+        return super.mostrarDatos();
     }
+    public void setTieneCasco(boolean tieneCasco) {
+        this.tieneCasco = tieneCasco;
+    }
+
 }

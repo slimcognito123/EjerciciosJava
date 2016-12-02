@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         MenuCompania menu = new MenuCompania();
-        boolean entrar = true;
-        while(entrar){
+        boolean sigueEnElBucle = true;
+        while(sigueEnElBucle){
             System.out.println(menu.showMenu());
-            menu.seleccionar(introducirDato());
+            sigueEnElBucle=menu.seleccionar(introducirDato());
         }
     }
 

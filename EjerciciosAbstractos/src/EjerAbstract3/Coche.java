@@ -8,20 +8,23 @@ public class Coche extends Vehiculo {
     private final int PRECIO_EXTRAS = 20;
     private boolean hasExtras;
 
-    public Coche(String matricula, int kilometraje, boolean isAlquilao, boolean hasExtras) {
+    public Coche(String matricula, int kilometraje, boolean isAlquilao) {
         super(matricula, kilometraje, isAlquilao);
-        this.hasExtras = hasExtras;
     }
 
 
     @Override
-    public float calcularAlquiler(float kilometros) {
-        if (hasExtras) return kilometros * PRECIO_KILOMETRO + PRECIO_EXTRAS;
-        else return kilometros * PRECIO_KILOMETRO;
+    public float calcularAlquiler() {
+        if (hasExtras) return getKilometraje() * PRECIO_KILOMETRO + PRECIO_EXTRAS;
+        else return getKilometraje() * PRECIO_KILOMETRO;
     }
 
     @Override
     public String mostrarDatos() {
         return super.mostrarDatos() + "\ntiene extras: " + hasExtras;
+    }
+
+    public void setHasExtras(boolean hasExtras) {
+        this.hasExtras = hasExtras;
     }
 }

@@ -3,6 +3,7 @@ package EjerAbstract3;
 /**
  * Created by curso mañana on 02/12/2016.
  */
+
 public class Furgoneta extends Vehiculo {
     private final float PRECIO = 0.5f;
     private int capacidadCarga;
@@ -14,8 +15,8 @@ public class Furgoneta extends Vehiculo {
 
 
     @Override
-    public float calcularAlquiler(float kilometros) {
-        return kilometros * PRECIO;
+    public float calcularAlquiler() {
+        return getKilometraje() * PRECIO;
     }
 
     @Override

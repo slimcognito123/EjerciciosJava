@@ -1,3 +1,4 @@
+package Pruebas;
 
 import java.io.*;
 
@@ -39,4 +40,4 @@ public class Teclado {
         } while (error);
         return entero;
     }
-} // final de la clase Teclado
+} // final de la clase Pruebas.Teclado

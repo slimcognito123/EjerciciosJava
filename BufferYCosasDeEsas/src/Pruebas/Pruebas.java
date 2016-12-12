@@ -1,3 +1,5 @@
+package Pruebas;
+
 import java.io.*;
 
 public class Pruebas {

@@ -20,6 +20,7 @@ public class FicheroLectura {
         } catch (FileNotFoundException e) {
             System.out.println("no has iniciado bien el fail rider " + e);
         }
+        return null;
     }
 
     public String leerLinea() {

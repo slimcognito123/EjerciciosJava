@@ -27,6 +27,7 @@ public class Profesor extends Empleado {
 
     @Override
     public float salario(float salarioBruto) {
+        System.out.println("profe");
         if (estadoCivil.compareTo("casado")==0) return salarioBruto *0.05f + salarioBruto;
         else return salarioBruto;
     }

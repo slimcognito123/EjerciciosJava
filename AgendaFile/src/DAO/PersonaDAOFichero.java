@@ -23,7 +23,7 @@ public class PersonaDAOFichero implements PersonaDAO {
         ficheroLectura = new FicheroLectura("Agenda.txt");
         if (ficheroLectura==null) return null;
         String linea=ficheroLectura.leerLinea();
-        while(linea.split("  ")[0]!=dni){
+        while(linea.split("-")[0]!=dni){
             linea=ficheroLectura.leerLinea();
         }
         String[] personaCortada= linea.split("  ");

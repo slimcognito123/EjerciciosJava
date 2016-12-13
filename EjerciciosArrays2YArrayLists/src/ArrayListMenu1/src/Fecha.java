@@ -1,5 +1,3 @@
-package ArrayListMenu1;
-
 /**
  * Created by curso mañana on 30/11/2016.
  */

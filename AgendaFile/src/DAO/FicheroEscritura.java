@@ -1,6 +1,9 @@
-package EjerEsquema;
+package DAO;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FicheroEscritura {
     FileWriter fichero;

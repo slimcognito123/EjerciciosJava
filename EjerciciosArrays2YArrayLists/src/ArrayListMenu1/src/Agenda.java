@@ -1,5 +1,3 @@
-package ArrayListMenu1;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;

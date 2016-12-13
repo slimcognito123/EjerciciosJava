@@ -1,5 +1,3 @@
-package ArrayListMenu1;
-
 import javax.management.timer.Timer;
 import java.sql.Time;
 import java.util.Date;

@@ -10,10 +10,10 @@ public class PruebaFicheros {
     FicheroLectura ficheroLecturaBueno;
 
     public PruebaFicheros() {
-        teclado=new Teclado();
+        teclado = new Teclado();
         FicheroEscritura ficheroEscrituraBorrador = new FicheroEscritura("patata.txt", false);
         ficheroEscrituraBorrador.cerrar();
-        ficheroEscritura = new FicheroEscritura("patata.txt",true);
+        ficheroEscritura = new FicheroEscritura("patata.txt", true);
         //ficheroLectura= new FicheroLectura("patatas.txt");
         System.out.println("escribe linea de texto");
         ficheroEscritura.escribirLinea(teclado.leerCadena());
@@ -24,11 +24,14 @@ public class PruebaFicheros {
         System.out.println("escribe un decimal");
         ficheroEscritura.escribirLinea(teclado.leerDouble());
         ficheroEscritura.cerrar();
-        ficheroLecturaBueno= new FicheroLectura("patata.txt");
+        ficheroLecturaBueno = new FicheroLectura("patata.txt");
         //System.out.println(ficheroLectura.leerCadena());
         System.out.println(ficheroLecturaBueno.leerLinea());//<-lo hace bien
         System.out.println(ficheroLecturaBueno.leerCadena());//<-lo hace bien
-        System.out.println(ficheroLecturaBueno.leerCadena("patata"));//<-se queda atascado
+        System.out.println(ficheroLecturaBueno.leerCadena());//<-lo hace bien
+        System.out.println(ficheroLecturaBueno.leerCadena());//<-lo hace bien
+        System.out.println(ficheroLecturaBueno.leerCadena());//<-lo hace bien
+        System.out.println(ficheroLecturaBueno.leerCadena('d'));//<-lo hace bien :D
     }
 
     public static void main(String[] args) {

@@ -76,4 +76,8 @@ public class Persona {
                 getFecha().getDia() + "/" + getFecha().getMes() + "/" + getFecha().getAnio();
     }
 
+    public String toString(boolean b) {
+        return dni + "-" + nombre + "-" + apellidos + "-" + telefono + "-" +
+                getFecha().getDia() + "/" + getFecha().getMes() + "/" + getFecha().getAnio();
+    }
 }

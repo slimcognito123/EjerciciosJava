@@ -31,7 +31,6 @@ public class Agenda {
 
     public ArrayList<Persona> listarPorMesCumple(int mes) {
         ArrayList<Persona> listaPersonas = personaDao.recuperarTodasLasPersonas();
-
         ArrayList<Persona> aux = new ArrayList<>();
         for (Persona persona : listaPersonas) {
             if (persona.getFecha().getMes() == mes) {

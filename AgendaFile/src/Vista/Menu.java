@@ -101,7 +101,8 @@ public class Menu {
     private void buscarPersona() {
         String dni = solicitarCadena("DNI: ");
         Persona persona = agenda.buscarPersonaPorDni(dni);
-        System.out.println(persona.toString());
+        if (persona==null) System.out.println("no se encontró la persona solicitada");
+        else System.out.println(persona.toString());
     }
 
     private void mostrarPersona() {

@@ -75,4 +75,11 @@ public class FicheroLectura {
         }
         return palabra;
     }
+    public void volverAlPrincipio(){
+        try {
+            buferDelFichero.reset();
+        } catch (IOException e) {
+            System.out.println("no se ha podido volver al principio del fichero");
+        }
+    }
 }

@@ -1,7 +1,5 @@
-
-package persistencia;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class AgenteConexion {
     protected static AgenteConexion mInstancia = null;
@@ -19,4 +17,5 @@ public class AgenteConexion {
         }
         return mInstancia;
     }
+
 }

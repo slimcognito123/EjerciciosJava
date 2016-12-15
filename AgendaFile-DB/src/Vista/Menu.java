@@ -1,0 +1,167 @@
+package Vista;
+
+import Beans.Fecha;
+import Beans.Persona;
+import Negocio.Agenda;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Menu {
+
+    Agenda agenda = new Agenda();
+    private Teclado teclado;
+
+    public static void main(String[] args) {
+        Menu menu = new Menu();
+        menu.mostrarMenu();
+    }
+
+    public void mostrarMenu() {
+
+        while (true) {
+            System.out.println("Bienvenido elige una de las opciones;");
+            System.out.println("1 - A�adir Persona: ");
+            System.out.println("2 - Borrar Persona(por DNI): ");
+            System.out.println("3 - Buscar Persona(por DNI): ");
+            System.out.println("4 - Mostrar Agenda: ");
+            System.out.println("5 - Mostrar Personas(por mes de cumplea�os): ");
+            System.out.println("0 - salir");
+            int opcion = solicitarOpcion(6, "Indica la opcion:");
+            switch (opcion) {
+                case 1:
+                    crearPersona();
+                    break;
+                case 2:
+                    borrarPersona();
+                    break;
+                case 3:
+                    buscarPersona();
+                    break;
+                case 4:
+                    mostrarAgenda();
+                    break;
+                case 5:
+                    mostrarPersona();
+                    break;
+                case 0:
+                    System.exit(0);
+                default:
+                    break;
+            }
+        }
+    }
+
+    @SuppressWarnings("resource")
+    public int solicitarOpcion(int max, String mensaje) {
+        boolean isError = true;
+        int numero = 0;
+        do {
+            try {
+                System.out.println(mensaje);
+                Scanner entrada = new Scanner(System.in);
+                numero = entrada.nextInt();
+
+                if (numero >= 0 && numero < max)
+                    isError = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Error, no es un numero");
+            }
+        } while (isError);
+
+        return numero;
+    }
+
+    private void crearPersona() {
+        System.out.println("Introduzca los datos del empleado");
+        Persona persona = getPersona();
+        agenda.aniadirPersona(persona);
+    }
+
+    private Persona getPersona() {
+        String nombre = solicitarCadena("Nombre: ");
+        String apellidos = solicitarCadena("Apellidos: ");
+        String dni = solicitarCadena("DNI: ");
+        int telefono = solicitarInt("Telefono: ");
+        Fecha fecha = solicitarFecha("Fecha de Nacimiento: ");
+
+        return new Persona(nombre, apellidos, dni, telefono, fecha);
+    }
+
+    private void mostrarAgenda() {
+        ArrayList<Persona> lista = agenda.recuperarAgenda();
+        for (Persona persona : lista) {
+            System.out.println(persona.toString());
+        }
+    }
+
+    private void borrarPersona() {
+        String dni = solicitarCadena("DNI: ");
+        agenda.borrarPersonaPorDni(dni);
+        System.out.println("Persona con DNI " + dni + " eliminada!");
+    }
+
+    private void buscarPersona() {
+        String dni = solicitarCadena("DNI: ");
+        Persona persona = agenda.buscarPersonaPorDni(dni);
+        if (persona==null) System.out.println("no se encontró la persona solicitada");
+        else System.out.println(persona.toString());
+    }
+
+    private void mostrarPersona() {
+        int mes = solicitarInt("Introduce Numero del Mes: ");
+        ArrayList<Persona> lista = agenda.listarPorMesCumple(mes);
+        for (Persona persona : lista) {
+            System.out.println(persona.toString());
+        }
+    }
+
+    private void modificarPersona(){
+        String dni = solicitarCadena("DNI: ");
+        Persona personaModificar = agenda.buscarPersonaPorDni(dni);
+        System.out.println(personaModificar);
+        System.out.println("Introduzca los nuevos datos:");
+        personaModificar=getPersona();
+        agenda.modificarPersona(personaModificar);
+    }
+
+    @SuppressWarnings("resource")
+    public String solicitarCadena(String mensaje) {
+        boolean isError = true;
+        String resultado = "";
+        do {
+            System.out.println(mensaje);
+            Scanner entrada = new Scanner(System.in);
+            resultado = entrada.nextLine();
+            if (resultado.length() > 3)
+                isError = false;
+        } while (isError);
+
+        return resultado;
+    }
+
+    @SuppressWarnings("resource")
+    public int solicitarInt(String mensaje) {
+        int resultado = 0;
+
+        System.out.println(mensaje);
+        Scanner entrada = new Scanner(System.in);
+        resultado = entrada.nextInt();
+
+        return resultado;
+    }
+
+    public Fecha solicitarFecha(String mensaje) {
+
+        System.out.println(mensaje);
+        int Dia = solicitarInt("Introduce Dia: ");
+        int Mes = solicitarInt("Introduce Mes: ");
+        int Anio = solicitarInt("Introduce A�o: ");
+
+        Fecha fecha = new Fecha(Dia, Mes, Anio);
+
+        return fecha;
+    }
+
+}

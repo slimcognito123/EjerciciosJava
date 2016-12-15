@@ -14,6 +14,6 @@ public interface PersonaDAO {
 
     Boolean borrarPersona(String dni);
 
-    Persona modificarPersona(String dni);
+    Persona modificarPersona(Persona persona);
 
 }

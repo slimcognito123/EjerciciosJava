@@ -34,7 +34,7 @@ public class PersonaDAOJDBC implements PersonaDAO {
     }
 
     @Override
-    public Persona modificarPersona(String dni) {
-        return escritorBD.modificarPersona(dni);
+    public Persona modificarPersona(Persona persona) {
+        return escritorBD.modificarPersona(persona);
     }
 }

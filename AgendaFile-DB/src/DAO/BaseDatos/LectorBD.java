@@ -19,6 +19,7 @@ public class LectorBD {
         try {
             String query = "SELECT * FROM agenda where dni = '"+dni+"';";
             Statement peticion = conectorBD.getConnection().createStatement();
+
         } catch (SQLException e) {
             System.out.println("no se han podido mostrar los contactos "+e);
             return null;

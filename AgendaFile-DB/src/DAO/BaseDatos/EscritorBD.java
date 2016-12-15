@@ -49,8 +49,13 @@ public class EscritorBD {
         return true;
     }
 
-    public Persona modificarPersona(String dni) {
-
+    public Persona modificarPersona(Persona persona) {
+        String query = "update agenda set nombre=? apellidos=? telefono=? FNaci=? where dni=?";
+        try {
+            Statement peticion = conectorBD.getConnection().prepareStatement(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

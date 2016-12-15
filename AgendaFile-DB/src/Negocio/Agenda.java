@@ -54,6 +54,6 @@ public class Agenda {
         return aux;
     }
     public void modificarPersona(Persona persona){
-
+        personaDao.modificarPersona(persona);
     }
 }

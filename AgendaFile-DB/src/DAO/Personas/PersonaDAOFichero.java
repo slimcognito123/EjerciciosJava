@@ -80,7 +80,7 @@ public class PersonaDAOFichero implements PersonaDAO {
         return linea;
     }
     @Override
-    public Persona modificarPersona(String dni) {
+    public Persona modificarPersona(Persona persona) {
         return null;
     }
 }

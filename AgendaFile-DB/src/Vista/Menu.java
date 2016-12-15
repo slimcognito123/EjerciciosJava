@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    Agenda agenda = new Agenda();
+    private Agenda agenda = new Agenda();
     private Teclado teclado;
 
     public static void main(String[] args) {

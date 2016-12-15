@@ -27,6 +27,7 @@ public class Menu {
             System.out.println("3 - Buscar Persona(por DNI): ");
             System.out.println("4 - Mostrar Agenda: ");
             System.out.println("5 - Mostrar Personas(por mes de cumplea�os): ");
+            System.out.println("6 - Modificar Persona(por DNI):");
             System.out.println("0 - salir");
             int opcion = solicitarOpcion(6, "Indica la opcion:");
             switch (opcion) {
@@ -45,6 +46,8 @@ public class Menu {
                 case 5:
                     mostrarPersona();
                     break;
+                case 6:
+                    modificarPersona();
                 case 0:
                     System.exit(0);
                 default:

@@ -27,7 +27,7 @@ public class EscritorBD {
             String mesFechaNacimiento = String.valueOf(persona.getFecha().getMes());
             String anoFechaNacimiento = String.valueOf(persona.getFecha().getAnio());
 
-            sentenciaPreparada.setString(5, diaFechaNacimiento+ mesFechaNacimiento+ anoFechaNacimiento);
+            sentenciaPreparada.setString(5, diaFechaNacimiento+"-"+ mesFechaNacimiento+"-"+ anoFechaNacimiento);
             sentenciaPreparada.executeUpdate();
 
         } catch (SQLException e) {

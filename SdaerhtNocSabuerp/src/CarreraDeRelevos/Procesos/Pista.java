@@ -20,6 +20,10 @@ public class Pista {
         for (int i = 0; i < 4; i++) {
             listaCorredores.add(new Thread(new Corredor(""+i)));
         }
+        for (Thread persona : listaCorredores) {
+            persona.start();
+        }
+        relevo.darRelevo();
         for (Thread thread : listaCorredores) {
             try {
                 thread.join();
@@ -27,9 +31,5 @@ public class Pista {
                 e.printStackTrace();
             }
         }
-        for (Thread persona : listaCorredores) {
-            persona.start();
-        }
-        relevo.darRelevo();
     }
 }

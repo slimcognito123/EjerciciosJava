@@ -20,12 +20,12 @@ public class ClienteUDP {
         }
     }
 
-    public void enviar(String mensaje, String hostNumber) {
-        byte[] m = mensaje.getBytes();
+    public void enviar(String mensaje, String persona,String hostNumber) {
+        byte[] mensajeBytes = (persona+mensaje).getBytes();
         InetAddress host;
         try {
             host = InetAddress.getByName(hostNumber);
-            DatagramPacket req = new DatagramPacket(m, mensaje.length(), host, PUERTO);
+            DatagramPacket req = new DatagramPacket(mensajeBytes, mensajeBytes.length, host, PUERTO);
             socket.send(req);
         } catch (IOException e1) {
             e1.printStackTrace();

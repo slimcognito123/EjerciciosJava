@@ -27,9 +27,9 @@ public class ServidorUDP extends Thread {
 
     private void servir(){
         while(true) {
-            String recibido=new String(recibirRequest().getData());
-            System.out.println("he recibido: "+recibido);
-            responderRequest(recibirRequest());
+            DatagramPacket datagramPacket = recibirRequest();
+            responderRequest(datagramPacket);
+            System.out.println("servidor: "+new String(datagramPacket.getData()));
         }
     }
     public DatagramPacket recibirRequest(){

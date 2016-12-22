@@ -1,4 +1,4 @@
-package PruebasDelServidor;
+package Bean;
 
 import java.io.*;
 import java.net.*;

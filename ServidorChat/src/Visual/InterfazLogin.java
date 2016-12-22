@@ -1,4 +1,6 @@
-package PruebasDelServidor;
+package Visual;
+
+import Control.ControlUsuario;
 
 import java.awt.Color;
 import java.awt.GridLayout;

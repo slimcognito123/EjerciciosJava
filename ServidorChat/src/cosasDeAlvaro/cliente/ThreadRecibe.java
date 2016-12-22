@@ -59,7 +59,7 @@ public class ThreadRecibe implements Runnable {
                 mostrarMensaje("Objeto desconocido");
             } //fin catch               
 
-        } while (!mensaje.equals("Cliente>>> TERMINATE")); //Ejecuta hasta que el server escriba TERMINATE
+        } while (!mensaje.equals("Visual>>> TERMINATE")); //Ejecuta hasta que el server escriba TERMINATE
 
         try {
             entrada.close(); //cierra entrada Stream

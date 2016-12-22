@@ -1,15 +1,11 @@
-package PruebasDelServidor;
+package Visual;
 
-import Servicios.TCPService;
+import Bean.Cliente;
+import Bean.ClienteRecibir;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 /**
  * Created by Patata kawaii on 21/12/2016.

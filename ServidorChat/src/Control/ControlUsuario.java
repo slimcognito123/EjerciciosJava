@@ -1,5 +1,7 @@
-package PruebasDelServidor;
+package Control;
 
+
+import Visual.visual;
 
 public class ControlUsuario {
 	private String usuario;

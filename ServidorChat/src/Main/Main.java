@@ -1,9 +1,9 @@
 package Main;
 
-import Servicios.AbrirServidor;
+import Visual.InterfazLogin;
 
 public class Main {
     public static void main(String[] args){
-        new AbrirServidor();
+        new InterfazLogin();
     }
 }

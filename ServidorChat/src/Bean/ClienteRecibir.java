@@ -1,4 +1,4 @@
-package PruebasDelServidor;
+package Bean;
 
 import javax.swing.*;
 import java.io.*;

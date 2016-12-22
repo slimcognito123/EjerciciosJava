@@ -1,8 +1,5 @@
 package Servicios;
 
-import PruebasDelServidor.ClienteRecibir;
-import PruebasDelServidor.visual;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;

@@ -31,7 +31,4 @@ public class AbrirServidor{
             System.out.println(e.getMessage());
         }
     }
-
-
-
 }

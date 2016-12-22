@@ -1,5 +1,8 @@
 package Servicios;
 
+import PruebasDelServidor.ClienteRecibir;
+import PruebasDelServidor.visual;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -21,8 +24,9 @@ public class TCPService extends Thread {
             OutputStream aux = skCliente.getOutputStream();
             DataOutputStream flujo = new DataOutputStream(aux);
             OutputStreamWriter escritor= new OutputStreamWriter(flujo);
-            //System.out.println(mensajeAEnviar);//llega el mensaje correctamente hasta aqui
+            System.out.println(mensajeAEnviar);//llega el mensaje correctamente hasta aqui
             if(mensajeAEnviar!= null)escritor.write(mensajeAEnviar);
+
             skCliente.close();
             mensajeAEnviar=null;
         } catch (IOException e) {

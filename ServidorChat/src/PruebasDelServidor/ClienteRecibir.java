@@ -1,10 +1,7 @@
 package PruebasDelServidor;
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -12,18 +9,29 @@ import java.net.Socket;
  */
 public class ClienteRecibir extends Thread{
     DefaultListModel model;
+    String HOST = "192.168.1.92";
+    int Puerto = 6555;
 
     public ClienteRecibir(DefaultListModel model) {
         this.model = model;
     }
 
+    public ClienteRecibir(DefaultListModel model, int puerto, String ip) {
+        this.model = model;
+        this.HOST=ip;
+        this.Puerto=puerto;
+    }
+
     @Override
     public void run() {
-        String HOST = "localhost";
-        int Puerto = 6000;
+        Socket skCliente = null;
+        try {
+            skCliente = new Socket(HOST, Puerto);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while(true){
             try {
-                Socket skCliente = new Socket(HOST, Puerto);
                 InputStream aux = skCliente.getInputStream();
                 DataInputStream flujo = new DataInputStream(aux);
                 BufferedReader lector = new BufferedReader(new InputStreamReader(flujo));
@@ -32,18 +40,12 @@ public class ClienteRecibir extends Thread{
                 {
                     //Se muestra por pantalla el mensaje recibido
                     System.out.println(mensajeServidor);
-                    System.out.println(lector);
+                    model.addElement(mensajeServidor);
                 }
-                model.addElement(mensajeServidor);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
-
     }
+
 }

@@ -4,19 +4,22 @@ import java.io.*;
 import java.net.*;
 
 public class Cliente extends Thread {
-    private static final String HOST = "localhost";
-    private static final int Puerto = 6000;
+    private String HOST = "192.168.1.92";
+    private int Puerto = 6555;
     private Socket skCliente;
     private DataOutputStream salidaServidor;
 
-    public Cliente() {
+    public Cliente(int puerto, String ip) {
         try {
+            this.Puerto=puerto;
+            this.HOST=ip;
             skCliente = new Socket(HOST, Puerto);
             InputStream aux = skCliente.getInputStream();
             DataInputStream flujo = new DataInputStream(aux);
             //System.out.println(flujo.readUTF());
         } catch (Exception e) {
             System.out.println(e.getMessage());
+
         }
     }
 
@@ -38,7 +41,8 @@ public class Cliente extends Thread {
     }
 
     public static void main(String[] args) {
-        Cliente cliente = new Cliente();
+        Cliente cliente = new Cliente(Integer.parseInt(args[0]), args[1]);
         cliente.enviar("yo me llamo Ralph", "Corre platanoooo");
+
     }
 }

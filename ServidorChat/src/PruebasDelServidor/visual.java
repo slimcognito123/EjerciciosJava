@@ -16,6 +16,8 @@ import java.net.Socket;
  */
 public class visual {
     private final String nombre;
+    private final int puerto;
+    private final String ip;
     private JList list1;
     DefaultListModel model = new DefaultListModel();
     private JTextArea textArea1;
@@ -26,33 +28,42 @@ public class visual {
         // TODO: place custom component creation code here
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         JFrame frame = new JFrame("visual");
-        frame.setContentPane(new visual(args[0]).panel1);
+        frame.setContentPane(this.panel1);
         frame.setSize(600, 400);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
-    }
+    }*/
 
-    public visual(String nombre) {
+    public visual(String nombre,int puerto, String ip) {
+        JFrame frame = new JFrame("visual");
+        frame.setContentPane(this.panel1);
+        frame.setSize(600, 400);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.pack();
         list1.setModel(model);
         model.addElement("hoi: I'm Temmie");
         model.addElement("hoi: I'm Temmie");
         model.addElement("hoi: I'm Temmie");
-        ClienteRecibir clienteRecibir = new ClienteRecibir(model);
+        ClienteRecibir clienteRecibir = new ClienteRecibir(model,puerto,ip);
         this.nombre = nombre;
+        this.puerto=puerto;
+        this.ip=ip;
         enviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Cliente cliente = new Cliente();
-                cliente.enviar(nombre, textArea1.getText());
+                Cliente cliente = new Cliente(puerto,ip);
+                cliente.enviar(nombre, textArea1.getText()+"\n");
                 textArea1.setText("");
             }
         });
-        //clienteRecibir.start();//<- hace que se atasque la app
-
+        clienteRecibir.start();//<- hace que se atasque la app
+        frame.setVisible(true);
     }
 }

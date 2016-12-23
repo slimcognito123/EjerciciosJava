@@ -44,9 +44,7 @@ public class visual {
         frame.setLocationRelativeTo(null);
         frame.pack();
         list1.setModel(model);
-        model.addElement("hoi: I'm Temmie");
-        model.addElement("hoi: I'm Temmie");
-        model.addElement("hoi: I'm Temmie");
+        model.addElement("Te has unido al chat\n");
         ClienteRecibir clienteRecibir = new ClienteRecibir(model,puerto,ip);
         this.nombre = nombre;
         this.puerto=puerto;

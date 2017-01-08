@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ThreadRecibe implements Runnable {
     private final PrincipalChat main;
-    private String mensaje;
+    private static String mensaje;
     private DataInputStream entrada;
     private Socket cliente;
 
@@ -17,6 +17,10 @@ public class ThreadRecibe implements Runnable {
     public ThreadRecibe(Socket cliente, PrincipalChat main) {
         this.cliente = cliente;
         this.main = main;
+    }
+
+    public static String getMensaje() {
+        return mensaje;
     }
 
     public void mostrarMensaje(String mensaje) {

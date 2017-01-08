@@ -14,7 +14,7 @@ public class ThreadEnvia implements Runnable {
     private DataOutputStream salida;
     private String mensaje;
     private Socket conexion;
-    private ArrayList<Socket> listaConexiones;
+    private ArrayList<Socket> listaConexiones = new ArrayList<>();
 
     public ThreadEnvia(PrincipalChat main){
         this.conexion = conexion;
@@ -39,11 +39,15 @@ public class ThreadEnvia implements Runnable {
          try {
              PrincipalChat.paralizador.esperar();
              for (Socket conectados : listaConexiones) {
-                 salida = new DataOutputStream(conectados.getOutputStream());
-                 salida.writeUTF(mensaje);
+                 System.out.println(conectados.getOutputStream()+"     <-- este es el output al que se envia");
+                 if(conectados.getOutputStream()!=null){
+                     System.out.println("aqui entro");
+                     salida = new DataOutputStream(conectados.getOutputStream());
+                     salida.writeUTF(mensaje);
+                 }
              }
-
         } catch (SocketException ex) {
+             ex.printStackTrace();
         } catch (IOException ioException) {
           ioException.printStackTrace();
         } catch (NullPointerException ex) {
@@ -53,5 +57,14 @@ public class ThreadEnvia implements Runnable {
 
     public void addCliente(Socket conexion) {
         listaConexiones.add(conexion);
+        try {
+            System.out.println(conexion.getOutputStream()+"<- se supone que este entra");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 }

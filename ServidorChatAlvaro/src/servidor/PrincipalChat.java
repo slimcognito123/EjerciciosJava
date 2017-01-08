@@ -83,9 +83,12 @@ public class PrincipalChat extends JFrame{
 
 
                     //Ejecucion de los threads
-                    executor.execute(new ThreadRecibe(conexion, main)); //client
+                    ThreadRecibe threadRe = new ThreadRecibe(conexion, main);
+                    executor.execute(threadRe); //client
+                    String mensaje=threadRe.getMensaje();
                     enviador.addCliente(conexion);
                     Thread hiloEnviador = new Thread(enviador);
+                    enviador.setMensaje(mensaje);
                     hiloEnviador.start();
                 } catch (IOException ex) {
                     ex.printStackTrace();

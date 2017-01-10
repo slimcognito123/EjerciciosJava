@@ -69,7 +69,7 @@ public class PrincipalChat extends JFrame{
  
         try {
             //main.mostrarMensaje("No se encuentra Servidor");
-            servidor = new ServerSocket(6555, 100); 
+            servidor = new ServerSocket(6000, 100);
             main.mostrarMensaje("Esperando Cliente ...");
             ThreadEnvia enviador= new ThreadEnvia(main);
             //Bucle infinito para esperar conexiones de los clientes

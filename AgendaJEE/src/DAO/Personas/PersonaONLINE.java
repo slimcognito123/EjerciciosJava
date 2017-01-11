@@ -6,11 +6,14 @@ import DAO.BaseDatos.LectorBD;
 
 import java.util.ArrayList;
 
-public class PersonaDAOJDBC implements PersonaDAO {
+/**
+ * Created by Patata kawaii on 10/01/2017.
+ */
+public class PersonaONLINE implements PersonaDAO {
     private LectorBD lectorBD;
     private EscritorBD escritorBD;
 
-    public PersonaDAOJDBC() {
+    public PersonaONLINE() {
         lectorBD = new LectorBD();
         escritorBD = new EscritorBD();
     }
@@ -33,13 +36,14 @@ public class PersonaDAOJDBC implements PersonaDAO {
         return escritorBD.eliminarPersona(dni);
     }
 
-    @Override
     public Persona modificarPersona(Persona persona) {
         return escritorBD.modificarPersona(persona);
     }
 
     @Override
     public ArrayList<Persona> recuperarTodasLasPersonas(String usuario) {
-        return null;
+
+        ArrayList<Persona> listaPersonas=lectorBD.seleccionarTodasLasPersonasOnline(usuario);
+        return listaPersonas;
     }
 }

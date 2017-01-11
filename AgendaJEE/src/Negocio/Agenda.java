@@ -53,4 +53,8 @@ public class Agenda {
     public void modificarPersona(Persona persona){
         personaDao.modificarPersona(persona);
     }
+
+    public ArrayList<Persona> recuperarAgenda(String usuario) {
+        return personaDao.recuperarTodasLasPersonas(usuario);
+    }
 }

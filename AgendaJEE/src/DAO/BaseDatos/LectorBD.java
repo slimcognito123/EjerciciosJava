@@ -46,17 +46,7 @@ public class LectorBD {
             String query = "SELECT * FROM agenda;";
             Statement peticion = conectorBD.getConnection().createStatement();
             ResultSet resultSet = peticion.executeQuery(query);
-            while (resultSet.next()) {
-                String nombre = resultSet.getString("nombre");
-                String apellidos = resultSet.getString("apellidos");
-                String telefono = resultSet.getString("telefono");
-                String FNaci = resultSet.getString("FNaci");
-                String dni = resultSet.getString("dni");
-                int dia = Integer.parseInt(FNaci.split("-")[0]);
-                int mes = Integer.parseInt(FNaci.split("-")[1]);
-                int ano = Integer.parseInt(FNaci.split("-")[2]);
-                listaPersonas.add(new Persona(nombre, apellidos, dni, Integer.parseInt(telefono), new Fecha(dia, mes, ano)));
-            }
+            cogerPersonas(listaPersonas, resultSet);
 
 
         } catch (SQLException e) {
@@ -67,18 +57,68 @@ public class LectorBD {
     }
 
     public boolean comprobarUser(String user, String pass) {
-        String query = "select * from usuarios where nomUsuario=" + user + ";";
+        String query = "select * from usuarios where nomUsuario='" + user + "';";
         try {
             Statement peticion = conectorBD.getConnection().createStatement();
+            System.out.println(user);
             ResultSet resultSet = peticion.executeQuery(query);
             if (resultSet.next()) {
-                if (pass.compareTo(resultSet.getString("password")) == 0)
+                if (pass.compareTo(resultSet.getString("password")) == 0){
                     return true;
-                else return false;
+                }else{
+                    System.out.println(pass.compareTo(resultSet.getString("password")));
+                    return false;
+                }
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    public ArrayList<Persona> seleccionarTodasLasPersonasOnline(String usuario) {
+        ArrayList<Persona> listaPersonas = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM agenda WHERE user='"+usuario+"';";
+            Statement peticion = conectorBD.getConnection().createStatement();
+            ResultSet resultSet = peticion.executeQuery(query);
+            cogerPersonas(listaPersonas, resultSet);
+
+
+        } catch (SQLException e) {
+            System.out.println("no se han podido mostrar los contactos " + e);
+            return null;
+        }
+        return listaPersonas;
+    }
+
+    private void cogerPersonas(ArrayList<Persona> listaPersonas, ResultSet resultSet) throws SQLException {
+        while (resultSet.next()) {
+            String nombre = resultSet.getString("nombre");
+            String apellidos = resultSet.getString("apellidos");
+            String telefono = resultSet.getString("telefono");
+            String FNaci = resultSet.getString("FNaci");
+            String dni = resultSet.getString("dni");
+            int dia = Integer.parseInt(FNaci.split("-")[0]);
+            int mes = Integer.parseInt(FNaci.split("-")[1]);
+            int ano = Integer.parseInt(FNaci.split("-")[2]);
+            listaPersonas.add(new Persona(nombre, apellidos, dni, Integer.parseInt(telefono), new Fecha(dia, mes, ano)));
+        }
+    }
+
+    public boolean buscarUsuarioRepetido(String usuario) {
+        try {
+            String query = "SELECT * FROM usuarios WHERE NomUsuario='"+usuario+"';";
+            Statement peticion = conectorBD.getConnection().createStatement();
+            ResultSet resultSet = peticion.executeQuery(query);
+            if(resultSet.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("no se ha podido buscar correctamente " + e);
+            //se da por repetido el usuario ya que ha surgido un problema
+            return true;
         }
         return false;
     }

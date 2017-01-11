@@ -83,4 +83,9 @@ public class PersonaDAOFichero implements PersonaDAO {
     public Persona modificarPersona(Persona persona) {
         return null;
     }
+
+    @Override
+    public ArrayList<Persona> recuperarTodasLasPersonas(String usuario) {
+        return null;
+    }
 }

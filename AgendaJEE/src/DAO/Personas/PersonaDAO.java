@@ -16,4 +16,5 @@ public interface PersonaDAO {
 
     Persona modificarPersona(Persona persona);
 
+    ArrayList<Persona> recuperarTodasLasPersonas(String usuario);
 }

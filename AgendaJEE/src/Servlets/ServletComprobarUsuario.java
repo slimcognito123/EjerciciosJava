@@ -19,6 +19,7 @@ public class ServletComprobarUsuario extends HttpServlet {
         LectorBD lectorBD = new LectorBD();
 
         if (lectorBD.comprobarUser(user, pass)) {
+            response.getWriter().write("loggeado");
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(120);

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen</title>
+	<link rel="stylesheet" type="text/css" href="./Styles/estilosPrincipal.css">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+	
+
+</head>
+<body>
+    
+    <header>
+			<table>
+				<tr>
+					<td><div id="titulo">TU AGENDA</div></td>
+					<td><div id="logout"><a href="Servletlogout"><img title="Logout" src="../Resources/iconos/logout.png" width="35px" height="35px"></a></div></td>
+				</tr>
+			</table>			
+		</header>
+    <section class="cuadro" id="registro">
+        <h2>Registro</h2>
+        <form action="ServletRegistrarUsuario" method="post" name="registrarUsuario">
+            <label for="nombreUsuarioR">Nombre de Usuario: </label><input type="text" name="nombreUsuarioR" id="nombreUsuarioR" onchange="comprobarNombre(), habilitarBoton()" tabindex="1">
+			<spam id="errorNombre"></spam><br>
+            <label for="passwordR">Contraseña: </label><input type="password" name="passwordR" id="passwordR" onchange="comprobarPasswordLen(), habilitarBoton()" tabindex="2">
+			<spam id="errorPWleng"></spam><br>
+            <label for="passwordRR">Repetir contraseña: </label><input type="password" name="passwordRR" id="passwordRR" onchange="comprobarPasswordIgual(), habilitarBoton()" tabindex="3">
+			<spam id="errorPWcoin"></spam><br><br>
+            <button onclick="submit(this)" onclick="comprobarDatos()" id ="botonRegistro" tabindex="4">Registrarse</button>
+        </form><br>
+		<a id="link" href="login.html">Ya estoy registrado</a>
+    </section>
+	
+</body>
+</html>

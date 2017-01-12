@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen</title>
+	<script src="./Javascript/comprobacionRegistro.js"></script>
+    <link rel="stylesheet" type="text/css" href="./Styles/estilosPrincipal.css">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+	
+
+</head>
+<body>
+	<main>
+		<header>
+			<table>
+				<tr>
+					<td><div id="titulo">TU AGENDA</div></td>
+					<td><div id="logout"><a href="/Servletlogout"><img title="Logout" src="iconos/logout.png" width="35px" height="35px"></a></div></td>
+				</tr>
+			</table>			
+		</header>
+		<section class="cuadro" id="login">
+		
+			<h2>LOGIN</h2>
+			<form action="Servletlogin" method="post" name="loginUsuario">
+				<label for="nombreUsuario">Nombre de Usuario: </label><input type="text" name="nombreUsuario" id="nombreUsuario" required tabindex="1"><br>
+				<label for="password">Contraseña: </label><input type="password" name="password" id="password" required tabindex="2"><br>
+				<button onclick="submit(this)" tabindex="3">Login</button>
+			</form><br>
+			<a id="link" href="registro.html">Regístrate aqui</a>
+		</section>
+		
+	</main>
+</body>
+</html>

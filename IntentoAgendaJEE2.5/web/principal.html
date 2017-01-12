@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./Styles/estilosPrincipal.css">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+
+	</head>
+	<body>
+	<main>
+		<header>
+			<table>
+				<tr>
+					<td><div id="titulo">Nombre esta es tu agenda</div></td>
+					<td><div id="logout"><a href="Servletlogout"><img title="Logout" src="iconos/logout.png" width="35px" height="35px"></a></div></td>
+				</tr>
+			</table>			
+		</header>
+			<section id="contactos">
+			<a href="/ServletGestionContactos" ><img src="iconos/aniadir.png" width="100px" height="100px"/></a>
+				<h2>Tus contactos:</h2>
+				<form action="ServletPrincipal">
+				
+				<label> Filtrar por mes:</label><select>
+				<option>Enero</option>
+				<option>Febrero</option>
+				<option>Marzo</option>
+				<option>Abril</option>
+				<option>Mayo</option>
+				<option>Junio</option>
+				<option>Julio</option>
+				</select>
+				<input type="submit" value="Filtrar">
+				</form>
+				<table id="tablaContactos">
+					<tr>
+						<th>Nombre</th>
+						<th>Apellidos</th>
+						<th>Telefono</th>
+						<th>Fecha Nacimiento</th>
+						<th>Modificar</th>
+						<th>Eliminar</th>
+				</tr>
+					
+				</table>
+		</section>
+	</main>
+	</body>
+</html>

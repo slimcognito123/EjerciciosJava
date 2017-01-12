@@ -1,7 +1,6 @@
 package Servlets;
 
 import Beans.Persona;
-import DAO.BaseDatos.LectorBD;
 import Negocio.Agenda;
 import visualResources.VisualResources;
 
@@ -35,12 +34,21 @@ public class ServletMainMenu extends HttpServlet {
         }
         response.getWriter().print("</select>");
         response.getWriter().print("<input type='submit' value='buscar por mes'></form>");
+        response.getWriter().print("<form action=\"/logout\"><input type='submit' value='logout'></form>");
         response.getWriter().print("<table>");
         for (Persona persona : list) {
             response.getWriter().print("<tr>");
             response.getWriter().print("<td>"+persona.getNombre()+" "+persona.getApellidos()+"</td>");
-            response.getWriter().print("<td><form action=\"modificar?dni='"+persona.getDni()+"'\" method=\"get\"><input type='submit' value='modificar'></form></td>");
-            response.getWriter().print("<td><form action=\"eliminar?dni='"+persona.getDni()+"'\" method=\"get\"><input type='submit' value='eliminar'></form></td>");
+            response.getWriter().print("<td>"+persona.getTelefono()+"</td>");
+            response.getWriter().print("<td>"+persona.getDni()+" "+persona.getApellidos()+"</td>");
+            response.getWriter().print("<td>"+persona.getFecha().getDia()+"/"+persona.getFecha().getMes()+"/"+persona.getFecha().getAnio()+"</td>");
+            response.getWriter().print("<td><form action=\"PantallaModificar\" method=\"post\"><input type='submit' value='modificar'><input type='hidden'  name='dni' value='"+persona.getDni()+"'></form></td>");
+            response.getWriter().print("<td>" +
+                                            "<form action='eliminar' method='post'>" +
+                                                "<input type='hidden' name='dni' value='"+persona.getDni()+"'>" +
+                                                "<input type='submit' value='eliminar'>" +
+                                            "</form>" +
+                                        "</td>");
             response.getWriter().print("</tr>");
         }
         response.getWriter().print("</table>");
@@ -48,6 +56,6 @@ public class ServletMainMenu extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //does nothing
     }
 }

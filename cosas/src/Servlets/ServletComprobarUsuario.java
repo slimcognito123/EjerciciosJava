@@ -22,7 +22,7 @@ public class ServletComprobarUsuario extends HttpServlet {
             response.getWriter().write("loggeado");
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
-            session.setMaxInactiveInterval(120);
+            session.setMaxInactiveInterval(240);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/mainMenu");
             rd.forward(request, response);
         } else {

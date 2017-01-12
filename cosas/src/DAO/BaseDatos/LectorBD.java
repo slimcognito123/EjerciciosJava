@@ -46,17 +46,7 @@ public class LectorBD {
             String query = "SELECT * FROM agenda;";
             Statement peticion = conectorBD.getConnection().createStatement();
             ResultSet resultSet = peticion.executeQuery(query);
-            while (resultSet.next()) {
-                String nombre = resultSet.getString("nombre");
-                String apellidos = resultSet.getString("apellidos");
-                String telefono = resultSet.getString("telefono");
-                String FNaci = resultSet.getString("FNaci");
-                String dni = resultSet.getString("dni");
-                int dia = Integer.parseInt(FNaci.split("-")[0]);
-                int mes = Integer.parseInt(FNaci.split("-")[1]);
-                int ano = Integer.parseInt(FNaci.split("-")[2]);
-                listaPersonas.add(new Persona(nombre, apellidos, dni, Integer.parseInt(telefono), new Fecha(dia, mes, ano)));
-            }
+            cogerPersonas(listaPersonas, resultSet);
 
 
         } catch (SQLException e) {
@@ -93,17 +83,7 @@ public class LectorBD {
             String query = "SELECT * FROM agenda WHERE user='"+usuario+"';";
             Statement peticion = conectorBD.getConnection().createStatement();
             ResultSet resultSet = peticion.executeQuery(query);
-            while (resultSet.next()) {
-                String nombre = resultSet.getString("nombre");
-                String apellidos = resultSet.getString("apellidos");
-                String telefono = resultSet.getString("telefono");
-                String FNaci = resultSet.getString("FNaci");
-                String dni = resultSet.getString("dni");
-                int dia = Integer.parseInt(FNaci.split("-")[0]);
-                int mes = Integer.parseInt(FNaci.split("-")[1]);
-                int ano = Integer.parseInt(FNaci.split("-")[2]);
-                listaPersonas.add(new Persona(nombre, apellidos, dni, Integer.parseInt(telefono), new Fecha(dia, mes, ano)));
-            }
+            cogerPersonas(listaPersonas, resultSet);
 
 
         } catch (SQLException e) {
@@ -112,4 +92,35 @@ public class LectorBD {
         }
         return listaPersonas;
     }
+
+    private void cogerPersonas(ArrayList<Persona> listaPersonas, ResultSet resultSet) throws SQLException {
+        while (resultSet.next()) {
+            String nombre = resultSet.getString("nombre");
+            String apellidos = resultSet.getString("apellidos");
+            String telefono = resultSet.getString("telefono");
+            String FNaci = resultSet.getString("FNaci");
+            String dni = resultSet.getString("dni");
+            int dia = Integer.parseInt(FNaci.split("-")[0]);
+            int mes = Integer.parseInt(FNaci.split("-")[1]);
+            int ano = Integer.parseInt(FNaci.split("-")[2]);
+            listaPersonas.add(new Persona(nombre, apellidos, dni, Integer.parseInt(telefono), new Fecha(dia, mes, ano)));
+        }
+    }
+
+    public boolean buscarUsuarioRepetido(String usuario) {
+        try {
+            String query = "SELECT * FROM usuarios WHERE NomUsuario='"+usuario+"';";
+            Statement peticion = conectorBD.getConnection().createStatement();
+            ResultSet resultSet = peticion.executeQuery(query);
+            if(resultSet.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("no se ha podido buscar correctamente " + e);
+            //se da por repetido el usuario ya que ha surgido un problema
+            return true;
+        }
+        return false;
+    }
+
 }

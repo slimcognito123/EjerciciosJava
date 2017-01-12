@@ -1,6 +1,5 @@
 package DAO.Factories;
 
-import DAO.Ficheros.FicheroLectura;
 import DAO.Personas.PersonaDAO;
 import DAO.Personas.PersonaDAOFichero;
 import DAO.Personas.PersonaDAOJDBC;

@@ -57,4 +57,8 @@ public class Agenda {
     public ArrayList<Persona> recuperarAgenda(String usuario) {
         return personaDao.recuperarTodasLasPersonas(usuario);
     }
+
+    public ArrayList<Persona> recuperarAgendaPorMes(String mes, String usuario) {
+        return personaDao.recuperarTodasLasPersonas(mes,usuario);
+    }
 }

@@ -1,8 +1,8 @@
-package DAO.Personas;
+package Modelo.Personas;
 
 import Beans.Persona;
-import DAO.BaseDatos.EscritorBD;
-import DAO.BaseDatos.LectorBD;
+import Modelo.BaseDatos.EscritorBD;
+import Modelo.BaseDatos.LectorBD;
 
 import java.util.ArrayList;
 
@@ -18,12 +18,13 @@ public class PersonaONLINE implements PersonaDAO {
         escritorBD = new EscritorBD();
     }
 
-    public boolean guardarPersona(Persona persona) {
-        return escritorBD.insertar(persona);
-    }
+    /*public Persona recuperarPersona(int id, String usuario) {
+        return null;
+    }*/
 
-    public Persona recuperarPersona(String dni) {
-        return lectorBD.seleccionarPersona(dni);
+    @Override
+    public boolean guardarPersona(Persona persona) {
+        return false;
     }
 
     public ArrayList<Persona> recuperarTodasLasPersonas() {
@@ -32,12 +33,18 @@ public class PersonaONLINE implements PersonaDAO {
         return listaPersonas;
     }
 
-    public Boolean borrarPersona(String dni) {
-        return escritorBD.eliminarPersona(dni);
+    @Override
+    public Boolean borrarPersona(int id, String usuario) {
+        return escritorBD.eliminarPersonaOnline(id,usuario);
     }
 
-    public Persona modificarPersona(Persona persona) {
-        return escritorBD.modificarPersona(persona);
+
+    public Boolean borrarPersona(int id) {
+        return escritorBD.eliminarPersona(id);
+    }
+
+    public void modificarPersona(Persona persona, String user) {
+        escritorBD.modificarPersonaOnline(persona,user);
     }
 
     @Override
@@ -51,6 +58,16 @@ public class PersonaONLINE implements PersonaDAO {
     public ArrayList<Persona> recuperarTodasLasPersonas(String mes, String usuario) {
         ArrayList<Persona> listaPersonas=lectorBD.seleccionarTodasLasPersonasOnline(mes,usuario);
         return listaPersonas;
+    }
+
+    @Override
+    public Persona recuperarPersona(int id) {
+        return lectorBD.seleccionarPersona(id);
+    }
+
+    @Override
+    public void guardarPersona(Persona persona, String user) {
+        escritorBD.anadirPersonaOnline(persona,user);
     }
 
 }

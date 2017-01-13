@@ -42,4 +42,9 @@ public class PersonaDAOJDBC implements PersonaDAO {
     public ArrayList<Persona> recuperarTodasLasPersonas(String usuario) {
         return null;
     }
+
+    @Override
+    public ArrayList<Persona> recuperarTodasLasPersonas(String mes, String usuario) {
+        return null;
+    }
 }

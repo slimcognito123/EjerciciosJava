@@ -1,6 +1,5 @@
-package DAO.BaseDatos;
+package Modelo.BaseDatos;
 
-import Beans.Fecha;
 import Beans.Persona;
 
 import java.sql.ResultSet;
@@ -14,30 +13,6 @@ public class LectorBD {
 
     public LectorBD() {
         if (conectorBD == null) conectorBD = new ConectorBD();
-    }
-
-    public Persona seleccionarPersona(String dni) {
-        Persona persona = null;
-        try {
-            String query = "SELECT * FROM agenda where dni = '" + dni + "';";
-            Statement peticion = conectorBD.getConnection().createStatement();
-            ResultSet resultSet = peticion.executeQuery(query);
-            resultSet.next();
-            String nombre = resultSet.getString("nombre");
-            String apellidos = resultSet.getString("apellidos");
-            String telefono = resultSet.getString("telefono");
-            String FNaci = resultSet.getString("FNaci");
-
-            int dia = Integer.parseInt(FNaci.split("-")[0]);
-            int mes = Integer.parseInt(FNaci.split("-")[1]);
-            int ano = Integer.parseInt(FNaci.split("-")[2]);
-            persona = new Persona(nombre, apellidos, dni, Integer.parseInt(telefono), new Fecha(dia, mes, ano));
-
-        } catch (SQLException e) {
-            System.out.println("no se han podido mostrar los contactos " + e);
-            return null;
-        }
-        return persona;
     }
 
     public ArrayList<Persona> seleccionarTodasLasPersonas() {
@@ -95,15 +70,12 @@ public class LectorBD {
 
     private void cogerPersonas(ArrayList<Persona> listaPersonas, ResultSet resultSet) throws SQLException {
         while (resultSet.next()) {
+            int id = resultSet.getInt("id");
             String nombre = resultSet.getString("nombre");
             String apellidos = resultSet.getString("apellidos");
             String telefono = resultSet.getString("telefono");
             String FNaci = resultSet.getString("FNaci");
-            String dni = resultSet.getString("dni");
-            int dia = Integer.parseInt(FNaci.split("-")[0]);
-            int mes = Integer.parseInt(FNaci.split("-")[1]);
-            int ano = Integer.parseInt(FNaci.split("-")[2]);
-            listaPersonas.add(new Persona(nombre, apellidos, dni, Integer.parseInt(telefono), new Fecha(dia, mes, ano)));
+            listaPersonas.add(new Persona(id,nombre, apellidos, telefono, FNaci));
         }
     }
 
@@ -136,5 +108,24 @@ public class LectorBD {
             return null;
         }
         return listaPersonas;
+    }
+
+    public Persona seleccionarPersona(int id) {
+        try {
+            String query = "SELECT * FROM agenda WHERE id='"+id+"';";
+            Statement peticion = conectorBD.getConnection().createStatement();
+            ResultSet resultSet = peticion.executeQuery(query);
+            System.out.println(query);
+            if (resultSet.next()) {
+                String nombre = resultSet.getString("nombre");
+                String apellidos = resultSet.getString("apellidos");
+                String telefono = resultSet.getString("telefono");
+                String FNaci = resultSet.getString("FNaci");
+                return new Persona(id,nombre, apellidos, telefono, FNaci);
+            }else return null;
+        } catch (SQLException e) {
+            System.out.println("no se han podido mostrar los contactos " + e);
+            return null;
+        }
     }
 }

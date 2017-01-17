@@ -1,6 +1,7 @@
 package Controlador.Servlets;
 
 import Modelo.Usuarios.UsuarioDAO;
+import Modelo.Usuarios.UsuarioDAOJPA;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,7 @@ public class ServletComprobarUsuario extends HttpServlet {
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         String user = request.getParameter("usuario");
         String pass = request.getParameter("password");
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        UsuarioDAOJPA usuarioDAO = new UsuarioDAOJPA();
 
         if (usuarioDAO.comprobarUser(user, pass)) {
             response.getWriter().write("loggeado");

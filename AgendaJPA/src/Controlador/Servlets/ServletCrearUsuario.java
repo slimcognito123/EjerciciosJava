@@ -2,6 +2,7 @@ package Controlador.Servlets;
 
 import Beans.Usuario;
 import Modelo.Usuarios.UsuarioDAO;
+import Modelo.Usuarios.UsuarioDAOJPA;
 import sun.misc.Regexp;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ public class ServletCrearUsuario extends HttpServlet {
             if (comprobarContrasenas(password, password2)) {
                 if (comprobarUsuarioBD(usuario)) {
                     Usuario user = new Usuario(usuario, password);
-                    UsuarioDAO escritorBDescribir = new UsuarioDAO();
+                    UsuarioDAOJPA escritorBDescribir = new UsuarioDAOJPA();
                     escritorBDescribir.insertarUsuario(user);
                     response.sendRedirect("index.html?creacionCorrecta='ok'");
                 } else {
@@ -44,7 +45,7 @@ public class ServletCrearUsuario extends HttpServlet {
 
     private boolean comprobarUsuarioValido() {
         Regexp expresionUsuario = new Regexp("");
-        return false;
+        return true;
     }
 
     private void darFormatoError(HttpServletResponse response) {
@@ -64,7 +65,7 @@ public class ServletCrearUsuario extends HttpServlet {
     }
 
     private boolean comprobarUsuarioBD(String usuario) {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        UsuarioDAOJPA usuarioDAO = new UsuarioDAOJPA();
         return !usuarioDAO.buscarUsuarioRepetido(usuario);
     }
 

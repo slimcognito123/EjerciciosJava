@@ -1,6 +1,6 @@
-package Modelo.Personas;
+package Modelo.Contactos;
 
-import Beans.Persona;
+import Beans.Contacto;
 import Modelo.BaseDatos.ConectorBD;
 
 import java.sql.PreparedStatement;
@@ -12,69 +12,75 @@ import java.util.ArrayList;
 /**
  * Created by Patata kawaii on 10/01/2017.
  */
-public class PersonaONLINE implements PersonaDAO {
+public class ContactoONLINE implements ContactoDAO {
     private ConectorBD conectorBD;
 
-    public PersonaONLINE() {
+    public ContactoONLINE() {
         conectorBD = new ConectorBD();
     }
 
     @Override
-    public Boolean borrarPersona(int id, String usuario) {
-        return eliminarPersonaOnline(id,usuario);
+    public Boolean borrarPersona(int id) {
+        return eliminarPersonaOnline(id);
     }
 
 
-    public void modificarPersona(Persona persona, String user) {
-        modificarPersonaOnline(persona,user);
+    public void modificarPersona(Contacto contacto) {
+        modificarPersonaOnline(contacto,null);
     }
 
 
     @Override
-    public ArrayList<Persona> recuperarTodasLasPersonas(String mes, String usuario) {
-        ArrayList<Persona> listaPersonas=seleccionarTodasLasPersonasOnline(mes,usuario);
-        return listaPersonas;
+    public ArrayList<Contacto> recuperarTodasLasPersonas(String mes, String usuario) {
+        ArrayList<Contacto> listaContactos =seleccionarTodasLasPersonasOnline(mes,usuario);
+        return listaContactos;
     }
 
     @Override
-    public Persona recuperarPersona(int id) {
+    public Contacto recuperarPersona(int id) {
         return seleccionarPersona(id);
     }
 
+
     @Override
-    public void guardarPersona(Persona persona, String user) {
-        anadirPersonaOnline(persona,user);
+    public void guardarPersona(Contacto contacto) {
+        anadirPersonaOnline(contacto,null);
+    }
+
+    @Override
+    public ArrayList<Contacto> recuperarTodasLasPersonas(String usuario) {
+        return null;
     }
 
 
-    public boolean anadirPersonaOnline(Persona persona, String user) {
+    public boolean anadirPersonaOnline(Contacto contacto, String user) {
         String sql="Insert into agenda VALUES (NULL ,?,?,?,?,?);";
         try {
             PreparedStatement sentenciaPreparada=  conectorBD.getConnection().prepareStatement(sql);
-            sentenciaPreparada.setString(1,persona.getNombre());
-            sentenciaPreparada.setString(2,persona.getApellidos());
-            sentenciaPreparada.setString(3, String.valueOf(persona.getTelefono()));
-            sentenciaPreparada.setString(4, persona.getFecha());
+            sentenciaPreparada.setString(1, contacto.getNombre());
+            sentenciaPreparada.setString(2, contacto.getApellidos());
+            sentenciaPreparada.setString(3, String.valueOf(contacto.getTelefono()));
+            sentenciaPreparada.setString(4, contacto.getFecha());
             sentenciaPreparada.setString(5,user);
             sentenciaPreparada.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("no se ha pòdido introducir la persona en la base de datos "+e);
+            System.out.println("no se ha pòdido introducir la contacto en la base de datos "+e);
             return false;
         }
         return true;
 
     }
 
-    public void modificarPersonaOnline(Persona persona, String user) {
+    public void modificarPersonaOnline(Contacto contacto, String user) {
         String query = "update agenda set nombre=?, apellidos=?, telefono=?, FNaci=? where id=? and user=?";
         try{
             PreparedStatement sentenciaPreparada=  conectorBD.getConnection().prepareStatement(query);
-            sentenciaPreparada.setString(1,persona.getNombre());
-            sentenciaPreparada.setInt(5,persona.getId());
-            sentenciaPreparada.setString(2,persona.getApellidos());
-            sentenciaPreparada.setString(3, String.valueOf(persona.getTelefono()));
-            sentenciaPreparada.setString(4, persona.getFecha());
+            sentenciaPreparada.setString(1, contacto.getNombre());
+            sentenciaPreparada.setInt(5, contacto.getId());
+            sentenciaPreparada.setString(2, contacto.getApellidos());
+            sentenciaPreparada.setString(3, String.valueOf(contacto.getTelefono()));
+            sentenciaPreparada.setString(4, contacto.getFecha());
             sentenciaPreparada.setString(6,user);
             System.out.println(query);
             System.out.println(sentenciaPreparada);
@@ -85,45 +91,45 @@ public class PersonaONLINE implements PersonaDAO {
 
     }
 
-    public boolean eliminarPersonaOnline(int id, Object user) {
+    public boolean eliminarPersonaOnline(int id) {
         try {
             Statement peticion = conectorBD.getConnection().createStatement();
-            String query = "delete from agenda where id='"+id+"' and user='"+user+"';";
+            String query = "delete from agenda where id='"+id+"';";
             peticion.executeUpdate(query);
         } catch (SQLException e) {
-            System.out.println("NO se ha podido eliminar con exito usuario ="+user);
+            System.out.println("NO se ha podido eliminar con exito usuario");
             return false;
         }
         return true;
     }
 
-    public ArrayList<Persona> seleccionarTodasLasPersonasOnline(String mes, String usuario) {
-        ArrayList<Persona> listaPersonas = new ArrayList<>();
+    public ArrayList<Contacto> seleccionarTodasLasPersonasOnline(String mes, String usuario) {
+        ArrayList<Contacto> listaContactos = new ArrayList<>();
         try {
             String query = "SELECT * FROM agenda WHERE user='"+usuario+"' and MONTH (FNaci) like '"+mes+"';";
             Statement peticion = conectorBD.getConnection().createStatement();
             ResultSet resultSet = peticion.executeQuery(query);
-            cogerPersonas(listaPersonas, resultSet);
+            cogerPersonas(listaContactos, resultSet);
             System.out.println(query);
         } catch (SQLException e) {
             System.out.println("no se han podido mostrar los contactos " + e);
             return null;
         }
-        return listaPersonas;
+        return listaContactos;
     }
 
-    private void cogerPersonas(ArrayList<Persona> listaPersonas, ResultSet resultSet) throws SQLException {
+    private void cogerPersonas(ArrayList<Contacto> listaContactos, ResultSet resultSet) throws SQLException {
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String nombre = resultSet.getString("nombre");
             String apellidos = resultSet.getString("apellidos");
             String telefono = resultSet.getString("telefono");
             String FNaci = resultSet.getString("FNaci");
-            listaPersonas.add(new Persona(id,nombre, apellidos, telefono, FNaci));
+            listaContactos.add(new Contacto(nombre, apellidos, telefono, FNaci,null));
         }
     }
 
-    public Persona seleccionarPersona(int id) {
+    public Contacto seleccionarPersona(int id) {
         try {
             String query = "SELECT * FROM agenda WHERE id='"+id+"';";
             Statement peticion = conectorBD.getConnection().createStatement();
@@ -134,7 +140,7 @@ public class PersonaONLINE implements PersonaDAO {
                 String apellidos = resultSet.getString("apellidos");
                 String telefono = resultSet.getString("telefono");
                 String FNaci = resultSet.getString("FNaci");
-                return new Persona(id,nombre, apellidos, telefono, FNaci);
+                return new Contacto(nombre, apellidos, telefono, FNaci,null);
             }else return null;
         } catch (SQLException e) {
             System.out.println("no se han podido mostrar los contactos " + e);
@@ -142,20 +148,20 @@ public class PersonaONLINE implements PersonaDAO {
         }
     }
 
-    public ArrayList<Persona> seleccionarTodasLasPersonasOnline(String usuario) {
-        ArrayList<Persona> listaPersonas = new ArrayList<>();
+    public ArrayList<Contacto> seleccionarTodasLasPersonasOnline(String usuario) {
+        ArrayList<Contacto> listaContactos = new ArrayList<>();
         try {
             String query = "SELECT * FROM agenda WHERE user='"+usuario+"';";
             Statement peticion = conectorBD.getConnection().createStatement();
             ResultSet resultSet = peticion.executeQuery(query);
-            cogerPersonas(listaPersonas, resultSet);
+            cogerPersonas(listaContactos, resultSet);
 
 
         } catch (SQLException e) {
             System.out.println("no se han podido mostrar los contactos " + e);
             return null;
         }
-        return listaPersonas;
+        return listaContactos;
     }
 
 }

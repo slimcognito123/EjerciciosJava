@@ -1,8 +1,7 @@
 package Controlador.Servlets;
 
-import Beans.Persona;
+import Beans.Contacto;
 import Controlador.AgendaController;
-import sun.misc.Regexp;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,9 +29,9 @@ public class ServletAnadirPersona extends HttpServlet {
         if (expresion.matches(expresion.pattern(), telefono)) {
             LocalDate fecha = LocalDate.parse(fechaCompleta);
             fechaCompleta = fecha.format(formatter);
-            Persona persona = new Persona(-1, nombre, apellido, telefono, fechaCompleta);
+            Contacto contacto = new Contacto(nombre, apellido, telefono, fechaCompleta,String.valueOf(request.getSession(false).getAttribute("user")));
             AgendaController controller = new AgendaController();
-            controller.anadirPersonaOnline(persona, String.valueOf(request.getSession(false).getAttribute("user")));
+            controller.anadirPersonaOnline(contacto);
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/buscarMes");
             rd.forward(request, response);

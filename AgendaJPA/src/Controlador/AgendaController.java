@@ -1,41 +1,46 @@
 package Controlador;
 
-import Beans.Persona;
+import Beans.Contacto;
 import Modelo.Factories.FactoryPersonaDAO;
-import Modelo.Personas.PersonaDAO;
+import Modelo.Contactos.ContactoDAO;
 
 import java.util.ArrayList;
 
 public class AgendaController {
 
-    private PersonaDAO personaDao;
+    private ContactoDAO contactoDao;
 
     public AgendaController() {
         inicialize();
     }
 
     private void inicialize(){
-            personaDao = new FactoryPersonaDAO().comprobarEstadoArchivoConfiguracion();
+            contactoDao = new FactoryPersonaDAO().comprobarEstadoArchivoConfiguracion();
 
     }
 
-    public void modificarPersona(Persona persona, String user){
-        personaDao.modificarPersona(persona,user);
+    public void modificarPersona(Contacto contacto){
+        contactoDao.modificarPersona(contacto);
     }
 
-    public ArrayList<Persona> recuperarAgendaPorMes(String mes, String usuario) {
-        return personaDao.recuperarTodasLasPersonas(mes,usuario);
+    public ArrayList<Contacto> recuperarAgendaPorMes(String mes, String usuario) {
+        return contactoDao.recuperarTodasLasPersonas(mes,usuario);
     }
 
     public void eliminarPersonaid(int id, String user) {
-        personaDao.borrarPersona(id,user);
+        contactoDao.borrarPersona(id);
     }
 
-    public Persona recuperarPersona(int id) {
-        return personaDao.recuperarPersona(id);
+    public Contacto recuperarPersona(int id) {
+        return contactoDao.recuperarPersona(id);
     }
 
-    public void anadirPersonaOnline(Persona persona, String user) {
-        personaDao.guardarPersona(persona,user);
+    public void anadirPersonaOnline(Contacto contacto) {
+        contactoDao.guardarPersona(contacto);
+    }
+
+
+    public ArrayList<Contacto> recuperarAgendaCompleta(String usuario) {
+        return contactoDao.recuperarTodasLasPersonas(usuario);
     }
 }

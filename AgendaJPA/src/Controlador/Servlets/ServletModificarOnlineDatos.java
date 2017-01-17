@@ -1,6 +1,6 @@
 package Controlador.Servlets;
 
-import Beans.Persona;
+import Beans.Contacto;
 import Controlador.AgendaController;
 
 import javax.servlet.RequestDispatcher;
@@ -27,7 +27,6 @@ public class ServletModificarOnlineDatos extends HttpServlet {
         } else {
             String nombre = request.getParameter("nombre");
             String apellido = request.getParameter("apellido");
-            int id = Integer.parseInt(request.getParameter("id"));
             String telefono = request.getParameter("tlf");
             String fechaCompleta = request.getParameter("date");
             //la fecha se separa por -
@@ -37,7 +36,9 @@ public class ServletModificarOnlineDatos extends HttpServlet {
                 LocalDate fecha = LocalDate.parse(fechaCompleta);
                 fechaCompleta = fecha.format(formatter);
                 AgendaController controller = new AgendaController();
-                controller.modificarPersona(new Persona(id, nombre, apellido, telefono, fechaCompleta), (String) session.getAttribute("user"));
+                Contacto user = new Contacto(nombre, apellido, telefono, fechaCompleta, (String) session.getAttribute("user"));
+                user.setId(Integer.parseInt(request.getParameter("id")));
+                controller.modificarPersona(user);
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/buscarMes");
                 rd.forward(request, response);
             } else {

@@ -1,19 +1,28 @@
 package Beans;
 
-public class Persona {
+import javax.persistence.*;
 
-    private final int id;
+@Entity
+@SequenceGenerator(name = "generadorContactos",sequenceName = "IdContactos")
+public class Contacto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "generadorContactos")
+    private Integer id;
     private String nombre;
     private String apellidos;
     private String telefono;
     private String fecha;
+    private String user;
 
-    public Persona(int id, String nombre, String apellidos, String telefono, String fecha) {
+    public Contacto(String nombre, String apellidos, String telefono, String fecha, String user) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.id = id;
         this.telefono = telefono;
         this.fecha = fecha;
+        this.user = user;
+    }
+
+    public Contacto() {
     }
 
     public String getNombre() {
@@ -44,7 +53,11 @@ public class Persona {
         this.fecha = fecha;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -15,14 +15,16 @@ public class UsuarioDAOJPA {
 
     }
 
-    public void insertarUsuario(Usuario user) {
+    public boolean insertarUsuario(Usuario user) {
         try {
             em.getTransaction().begin();
             em.persist(user);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.close();
+            return false;
         }
+        return true;
     }
 
 

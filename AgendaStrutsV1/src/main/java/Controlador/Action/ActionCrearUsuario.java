@@ -6,61 +6,23 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class ActionCrearUsuario extends ActionSupport implements ModelDriven<Usuario>{
-    private  String nombre;
-    private String pass;
-    private String pass2;
+
+    private Usuario usuario = new Usuario();
+    private UsuarioDAOJPA escritorBDescribir = new UsuarioDAOJPA();
 
     @Override
     public String execute() throws Exception {
-        if(nombre == null || pass == null || pass2==null){
-            return INPUT;
-        }else {
-            if (comprobarContrasenas(pass,pass2)){
-                if (comprobarUsuarioBD(nombre)){
-                    Usuario user = new Usuario(nombre,pass);
-                    UsuarioDAOJPA escritorBDescribir = new UsuarioDAOJPA();
-                    escritorBDescribir.insertarUsuario(user);
-                    return SUCCESS;
-                }else {
-                    return LOGIN;
-                }
-            }else{
-                return INPUT;
-            }
+        String result = ERROR;
+        boolean inserted = escritorBDescribir.insertarUsuario(usuario);
+        if(inserted){
+            result = SUCCESS;
         }
-    }
-
-
-    private boolean comprobarUsuarioBD(String usuario) {
-        UsuarioDAOJPA usuarioDAO = new UsuarioDAOJPA();
-        return !usuarioDAO.buscarUsuarioRepetido(usuario);
-    }
-    private boolean comprobarContrasenas(String pass, String pass2) {
-        return pass.compareTo(pass2) == 0;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
+        return result;
     }
 
     @Override
     public Usuario getModel() {
         Usuario model = new Usuario();
         return model;
-    }
-    public void setModel(String nombre,String pass){
-
     }
 }

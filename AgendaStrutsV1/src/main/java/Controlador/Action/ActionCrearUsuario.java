@@ -3,8 +3,9 @@ package Controlador.Action;
 import Beans.Usuario;
 import Modelo.Usuarios.UsuarioDAOJPA;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
-public class ActionCrearUsuario extends ActionSupport{
+public class ActionCrearUsuario extends ActionSupport implements ModelDriven<Usuario>{
     private  String nombre;
     private String pass;
     private String pass2;
@@ -52,5 +53,14 @@ public class ActionCrearUsuario extends ActionSupport{
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    @Override
+    public Usuario getModel() {
+        Usuario model = new Usuario();
+        return model;
+    }
+    public void setModel(String nombre,String pass){
+
     }
 }

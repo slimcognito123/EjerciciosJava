@@ -1,4 +1,4 @@
-<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core_1_1" %>
+<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="Beans.Contacto" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="Controlador.AgendaController" %>

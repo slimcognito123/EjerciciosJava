@@ -1,6 +1,9 @@
 package interceptores;
 
+import beans.Persona;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.util.ValueStack;
 
 import java.time.LocalDate;
 
@@ -12,14 +15,21 @@ public class ActionValidar extends ActionSupport{
     @Override
     public String execute() throws Exception {
 
+        ValueStack stack = ActionContext.getContext().getValueStack();
+        stack.push(new Persona("Paco",20));
         if (nombre == null || edad == null) {
-            return INPUT;
+            return LOGIN;
         }else if (edad<18){
             addActionError("eres menor de edad");
             return LOGIN;
         }else{
             return SUCCESS;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ActionValidar <- nombre de la clase merluzo";
     }
 
     public LocalDate getHoy() {

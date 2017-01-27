@@ -711,11 +711,11 @@ ENV/
 ### PhpStorm Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
+!*.xml
 # *.iml
 # modules.xml
 # .idea/misc.xml
 # *.ipr
-
 
 ### NotepadPP ###
 # Notepad++ backups #

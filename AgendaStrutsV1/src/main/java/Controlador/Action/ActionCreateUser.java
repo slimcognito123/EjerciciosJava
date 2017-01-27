@@ -5,7 +5,7 @@ import Modelo.Usuarios.UsuarioDAOJPA;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class ActionCrearUsuario extends ActionSupport implements ModelDriven<Usuario>{
+public class ActionCreateUser extends ActionSupport implements ModelDriven<Usuario>{
 
     private Usuario usuario = new Usuario();
     private UsuarioDAOJPA escritorBDescribir = new UsuarioDAOJPA();

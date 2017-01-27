@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class UsuarioDAOJPA {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaStruts");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
     private EntityManager em = emf.createEntityManager();
 
     public UsuarioDAOJPA() {

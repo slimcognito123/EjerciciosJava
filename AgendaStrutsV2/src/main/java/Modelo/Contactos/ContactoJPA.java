@@ -11,10 +11,9 @@ import java.util.ArrayList;
 
 public class ContactoJPA implements ContactoDAO {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaStruts");
-
     @Override
     public Boolean borrarPersona(int id) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
         EntityManager em = emf.createEntityManager();
         try {
 
@@ -31,6 +30,7 @@ public class ContactoJPA implements ContactoDAO {
 
     @Override
     public void modificarPersona(Contacto contacto) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -45,6 +45,7 @@ public class ContactoJPA implements ContactoDAO {
     @Override
     public ArrayList<Contacto> recuperarTodasLasPersonas(String mes, String usuario) {
 
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
         EntityManager em = emf.createEntityManager();
 
         String query = "Select c FROM Contacto c where MONTH(c.fecha) like :mes and c.user=:usuario";
@@ -64,6 +65,7 @@ public class ContactoJPA implements ContactoDAO {
 
     @Override
     public ArrayList<Contacto> recuperarTodasLasPersonas(String usuario) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
         EntityManager em = emf.createEntityManager();
 
         String query = "Select c FROM Contacto c where c.user=:usuario";
@@ -83,6 +85,7 @@ public class ContactoJPA implements ContactoDAO {
 
     @Override
     public Contacto recuperarPersona(int id) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
         EntityManager em = emf.createEntityManager();
         Contacto contacto;
         try {
@@ -96,6 +99,7 @@ public class ContactoJPA implements ContactoDAO {
 
     @Override
     public void guardarPersona(Contacto contacto) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();

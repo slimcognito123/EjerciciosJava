@@ -743,6 +743,6 @@ pene/pene.iml
 pene/pom.xml
 .xml,.iml
 EjerciciosJavaTema2/.idea/compiler.xml,EjerciciosJavaTema2/.idea/copyright/profiles_settings.xml,EjerciciosJavaTema2/.idea/misc.xml,EjerciciosJavaTema2/.idea/modules.xml,EjerciciosJavaTema2/.idea/workspace.xml,EjerciciosJavaTema2/EjerciciosJavaTema2.iml
-*.xml
+!*.xml
 *.iml
 *.class

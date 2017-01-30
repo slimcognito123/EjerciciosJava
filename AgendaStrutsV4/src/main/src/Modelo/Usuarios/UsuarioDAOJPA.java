@@ -28,7 +28,6 @@ public class UsuarioDAOJPA {
         return true;
     }
 
-
     public boolean buscarUsuarioRepetido(String usuario) {
         String query = "Select user FROM Usuario user where user.nombre=:usuario";
         Query pregunta = em.createQuery(query);

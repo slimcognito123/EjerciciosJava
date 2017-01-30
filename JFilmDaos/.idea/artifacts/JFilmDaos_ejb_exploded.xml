@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="JFilmDaos:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/JFilmDaos_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="JFilmDaos/ejb/EJB" />
+      <element id="module-output" name="JFilmDaos" />
+    </root>
+  </artifact>
+</component>

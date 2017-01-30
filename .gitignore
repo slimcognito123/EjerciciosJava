@@ -746,3 +746,4 @@ EjerciciosJavaTema2/.idea/compiler.xml,EjerciciosJavaTema2/.idea/copyright/profi
 !*.xml
 *.iml
 *.class
+!/*/pom.xml

@@ -28,7 +28,7 @@ public class ServletBuscarMes extends HttpServlet {
 //    @Qualifier("controlador")
 //    private AgendaController agendaController;
 
-    ArrayList<Contacto> list;
+    private ArrayList<Contacto> list;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("estoy en buscar por mes " + request.getParameter("mes"));

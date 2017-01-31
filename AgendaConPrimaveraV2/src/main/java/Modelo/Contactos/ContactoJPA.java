@@ -68,9 +68,12 @@ public class ContactoJPA implements ContactoDAO {
 
         try {
             resultados = getContactos(pregunta);
+            System.out.println("\033[33m"+resultados);
         } catch (Exception e) {
+            System.out.println("\033[35m"+e);
             return new ArrayList<>();
         }
+        System.out.println("\033[35m"+resultados);
         return resultados;
     }
 

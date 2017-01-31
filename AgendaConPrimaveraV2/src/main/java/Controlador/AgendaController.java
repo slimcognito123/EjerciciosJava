@@ -43,7 +43,7 @@ public class AgendaController {
         contactoDao.guardarPersona(contacto);
     }
 
-
+    @Transactional
     public ArrayList<Contacto> recuperarAgendaCompleta(String usuario) {
         return contactoDao.recuperarTodasLasPersonas(usuario);
     }

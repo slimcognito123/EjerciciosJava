@@ -3,20 +3,24 @@ package Controlador;
 import Beans.Contacto;
 import Modelo.Factories.FactoryPersonaDAO;
 import Modelo.Contactos.ContactoDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-
+@Service(value = "controlador")
 public class AgendaController {
-
+    @Autowired
+    @Qualifier("contactoDAO")
     private ContactoDAO contactoDao;
 
-    public AgendaController() {
+   /* public AgendaController() {
         inicialize();
     }
 
     private void inicialize(){
             contactoDao = new FactoryPersonaDAO().comprobarEstadoArchivoConfiguracion();
-    }
+    }*/
 
     public void modificarPersona(Contacto contacto){
         contactoDao.modificarPersona(contacto);

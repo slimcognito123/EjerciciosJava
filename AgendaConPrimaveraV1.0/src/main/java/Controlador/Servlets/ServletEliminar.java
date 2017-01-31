@@ -1,6 +1,7 @@
 package Controlador.Servlets;
 
 import Controlador.AgendaController;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 /**
  * Created by Patata kawaii on 11/01/2017.
  */
+@Component
 @WebServlet("/eliminar")
 public class ServletEliminar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

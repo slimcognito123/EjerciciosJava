@@ -2,6 +2,7 @@ package Controlador.Servlets;
 
 import Modelo.Usuarios.UsuarioDAO;
 import Modelo.Usuarios.UsuarioDAOJPA;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import java.io.IOException;
 /**
  * Created by curso mañana on 10/01/2017.
  */
+@Component
 @WebServlet("/comprobarContrasena")
 public class ServletComprobarUsuario extends HttpServlet {
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {

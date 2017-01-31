@@ -2,9 +2,10 @@ package Beans;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Component
+@Entity
 public class Usuario {
 
     @Id

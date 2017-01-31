@@ -1,11 +1,13 @@
 package Modelo.Usuarios;
 
 import Beans.Usuario;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
-
+@Repository(value = "usuarioDAO")
 public class UsuarioDAOJPA {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");

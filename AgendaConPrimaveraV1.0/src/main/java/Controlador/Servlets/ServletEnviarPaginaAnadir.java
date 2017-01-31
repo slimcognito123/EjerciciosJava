@@ -1,5 +1,7 @@
 package Controlador.Servlets;
 
+import org.springframework.stereotype.Component;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import java.io.IOException;
 /**
  * Created by curso mañana on 11/01/2017.
  */
+@Component
 @WebServlet("/pantallaAnadir")
 public class ServletEnviarPaginaAnadir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

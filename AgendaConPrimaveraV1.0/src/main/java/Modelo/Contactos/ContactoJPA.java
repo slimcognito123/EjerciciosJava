@@ -1,6 +1,7 @@
 package Modelo.Contactos;
 
 import Beans.Contacto;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -10,7 +11,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Objects;
 
-@Service
+@Repository(value = "contactoDAO")
 public class ContactoJPA implements ContactoDAO {
     @Override
     public Boolean borrarPersona(int id) {

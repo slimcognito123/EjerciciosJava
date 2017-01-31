@@ -2,6 +2,9 @@ package Controlador.Servlets;
 
 import Beans.Contacto;
 import Controlador.AgendaController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,8 +21,13 @@ import java.util.regex.Pattern;
 /**
  * Created by Patata kawaii on 11/01/2017.
  */
+@Component
 @WebServlet("/modificar")
 public class ServletModificarOnlineDatos extends HttpServlet {
+    @Autowired
+    @Qualifier("controlador")
+    private AgendaController controller;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session == null) {
@@ -35,7 +43,6 @@ public class ServletModificarOnlineDatos extends HttpServlet {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd");
                 LocalDate fecha = LocalDate.parse(fechaCompleta);
                 fechaCompleta = fecha.format(formatter);
-                AgendaController controller = new AgendaController();
                 Contacto user = new Contacto(nombre, apellido, telefono, fechaCompleta, (String) session.getAttribute("user"));
                 user.setId(Integer.parseInt(request.getParameter("id")));
                 controller.modificarPersona(user);

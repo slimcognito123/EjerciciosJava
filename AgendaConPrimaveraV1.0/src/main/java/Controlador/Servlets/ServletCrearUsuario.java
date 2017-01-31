@@ -3,6 +3,7 @@ package Controlador.Servlets;
 import Beans.Usuario;
 import Modelo.Usuarios.UsuarioDAO;
 import Modelo.Usuarios.UsuarioDAOJPA;
+import org.springframework.stereotype.Component;
 import sun.misc.Regexp;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+@Component
 @WebServlet("/comprobarCreacion")
 public class ServletCrearUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

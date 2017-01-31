@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Component
+@Entity
 @SequenceGenerator(name = "generadorContactos",sequenceName = "IdContactos")
 public class Contacto {
     @Id

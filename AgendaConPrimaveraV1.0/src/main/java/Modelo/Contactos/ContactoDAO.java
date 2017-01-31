@@ -5,7 +5,7 @@ import Beans.Contacto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-@Service
+
 public interface ContactoDAO {
 
     Boolean borrarPersona(int id);

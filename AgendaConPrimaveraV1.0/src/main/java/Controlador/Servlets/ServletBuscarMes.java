@@ -2,6 +2,9 @@ package Controlador.Servlets;
 
 import Beans.Contacto;
 import Controlador.AgendaController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,10 +20,15 @@ import java.util.Objects;
 /**
  * Created by Patata kawaii on 12/01/2017.
  */
+@Component
 @WebServlet("/buscarMes")
 public class ServletBuscarMes extends HttpServlet {
-    AgendaController agendaController = new AgendaController();
+    @Autowired
+    @Qualifier("controlador")
+    private AgendaController agendaController;
+
     ArrayList<Contacto> list;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("estoy en buscar por mes "+request.getParameter("mes"));
         HttpSession session = request.getSession(false);

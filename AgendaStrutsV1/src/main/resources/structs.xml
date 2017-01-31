@@ -1,0 +1,38 @@
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <package strict-method-invocation="false" name="example" extends="struts-default">
+        <!--<interceptors>-->
+            <!--<interceptor name="log" class="InterceptorLog"/>-->
+        <!--</interceptors>-->
+        <!--<default-interceptor-ref name="myInterceptorStack"/>-->
+        <interceptors>
+            <interceptor name="interceptorCreateUser" class="Controlador.Interceptors.InterceptorCrearUser"/>
+            <interceptor name="InterceptorEntrarApp" class="Controlador.Interceptors.InterceptorEntrarApp"/>
+        </interceptors>
+        <default-action-ref name="underConstruction"/>
+        <global-results>
+            <result name="errorDesconocido">/errorPageDev.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="errorDesconocido"/>
+        </global-exception-mappings>
+        <action name="crearUsuario" class="Controllers.ActionRegistro">
+            <interceptor-ref name="interceptorCreateUser" />
+            <result name="success">/index.html</result>
+            <result name="input">/crearUsuario.html</result>
+            <result name="error">/crearUsuario.html</result>
+        </action>
+        <action name="comprobarContrasena" class="Controlador.Action.ActionEntrarApp">
+            <interceptor-ref name="InterceptorEntrarApp" />
+            <result name="success">/mainMenu.jsp</result>
+            <result name="input">/index.html</result>
+        </action>
+        <action name="underConstruction">
+            <result>Agenda/errorPage.html</result>
+        </action>
+    </package>
+</struts>

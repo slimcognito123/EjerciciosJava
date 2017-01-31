@@ -2,6 +2,9 @@ package Controlador.Servlets;
 
 import Beans.Contacto;
 import Controlador.AgendaController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +20,13 @@ import java.util.regex.Pattern;
 /**
  * Created by curso mañana on 11/01/2017.
  */
+@Component
 @WebServlet("/anadirPersona")
 public class ServletAnadirPersona extends HttpServlet {
+    @Autowired
+    @Qualifier("controlador")
+    private AgendaController controller;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
@@ -30,7 +38,6 @@ public class ServletAnadirPersona extends HttpServlet {
             LocalDate fecha = LocalDate.parse(fechaCompleta);
             fechaCompleta = fecha.format(formatter);
             Contacto contacto = new Contacto(nombre, apellido, telefono, fechaCompleta,String.valueOf(request.getSession(false).getAttribute("user")));
-            AgendaController controller = new AgendaController();
             controller.anadirPersonaOnline(contacto);
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/buscarMes");

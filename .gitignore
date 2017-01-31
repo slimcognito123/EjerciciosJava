@@ -20,33 +20,4 @@ Documentacion/Modulo_2/Spring/ejercicios/~$ercicios Spring Core.docx
 /*/*/target/
 /*/*/classes/
 *.class
-### NotepadPP ###
-# Notepad++ backups #
-*.bak
-EjerciciosJavaTema1/.idea/compiler.xml
-EjerciciosJavaTema1/.idea/copyright/profiles_settings.xml
-EjerciciosJavaTema1/.idea/misc.xml
-EjerciciosJavaTema1/.idea/modules.xml
-EjerciciosJavaTema1/.idea/uiDesigner.xml
-EjerciciosJavaTema1/.idea/workspace.xml
-EjerciciosJavaTema1/EjerciciosJavaTema1.iml
-pene/.idea/compiler.xml
-pene/.idea/copyright/profiles_settings.xml
-pene/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml
-pene/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml
-pene/.idea/libraries/Maven__org_springframework_spring_aop_4_3_4_RELEASE.xml
-pene/.idea/libraries/Maven__org_springframework_spring_beans_4_3_4_RELEASE.xml
-pene/.idea/libraries/Maven__org_springframework_spring_context_4_3_4_RELEASE.xml
-pene/.idea/libraries/Maven__org_springframework_spring_core_4_3_4_RELEASE.xml
-pene/.idea/libraries/Maven__org_springframework_spring_expression_4_3_4_RELEASE.xml
-pene/.idea/misc.xml
-pene/.idea/modules.xml
-pene/.idea/workspace.xml
-pene/pene.iml
-pene/pom.xml
-.xml,.iml
-EjerciciosJavaTema2/.idea/compiler.xml,EjerciciosJavaTema2/.idea/copyright/profiles_settings.xml,EjerciciosJavaTema2/.idea/misc.xml,EjerciciosJavaTema2/.idea/modules.xml,EjerciciosJavaTema2/.idea/workspace.xml,EjerciciosJavaTema2/EjerciciosJavaTema2.iml
-*.xml
-*.iml
-*.class
 !/*/pom.xml

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="ejemplo"/>
+    <!--<bean id="estudiante" class="ejemplo.Estudiante">
+        <property name="nombre" value="pene"/>
+    </bean>
+    <bean id="estudiante1" class="ejemplo.Estudiante" init-method="inicio" destroy-method="destruir">
+        <property name="nombre" value="pene2"/>
+        <property name="edad" value="30"/>
+        <property name="amigos">
+            <list value-type="ejemplo.Estudiante">
+                <ref bean="estudiante" />
+                <ref bean="estudiante2"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="estudiante2" class="ejemplo.Estudiante" lazy-init="true" init-method="inicio" destroy-method="destruir">
+        <constructor-arg index="0" value="patata"/>
+        <constructor-arg index="1" value="20"/>
+    </bean>
+    <bean id="estudiante4" class="ejemplo.Estudiante" parent="estudiante1"/>-->
+    <bean id="persona" class="beans.Persona" scope="prototype">
+        <property name="id" value="1234567890"/>
+        <property name="apellidos" value="Caulfield"/>
+        <property name="nombre" value="Max"/>
+        <property name="direccion" ref="dir"/>
+    </bean>
+    <bean id="dir" class="beans.Direccion">
+        <property name="cp" value="46546"/>
+
+    </bean>
+</beans>

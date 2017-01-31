@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="MadMax" class="beans.PersonaMejorada">
+        <property name="nombre" value="Max"/>
+        <property name="altura" value="1.65"/>
+        <property name="amigos">
+            <list value-type="beans.PersonaMejorada">
+                <ref bean="warren"/>
+            </list>
+        </property>
+        <property name="colores" value="Azul"/>
+        <property name="edad" value="18"/>
+        <property name="emails">
+            <map value-type="java.lang.String" >
+                <entry value="imeil@imeil.con" key="imeil"/>
+                <entry value="imeil@calientecorreo.com" key="jotmeil"/>
+            </map>
+        </property>
+        <property name="pareja" ref="chloe"/>
+    </bean>
+    <bean id="chloe" class="beans.PersonaMejorada">
+        <property name="nombre" value="Chloe"/>
+    </bean>
+    <bean id="warren" class="beans.PersonaMejorada">
+        <property name="nombre" value="Warren"/>
+    </bean>
+    <bean id="personaFactoria" class="beans.PersonaFactory" factory-method="getInstance"/>
+    <bean id="direccion" class="beans.Direccion">
+        <property name="cp" value="12435647"/>
+        <property name="calle" value="calle falsa 123"/>
+    </bean>
+    <bean id="persiana" class="beans.Persiana" autowire="constructor">
+        <constructor-arg index="0" value="patata kawaii"/>
+        <constructor-arg index="1" value="18"/>
+        <constructor-arg index="2" value="1.70"/>
+    </bean>
+</beans>

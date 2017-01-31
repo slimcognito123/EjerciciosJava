@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+         version="3.1">
+    <enterprise-beans>
+        <session>
+            <ejb-name>PruebaEJB</ejb-name>
+            <ejb-class>Negocio.PruebaBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+        <session>
+            <ejb-name>PruebaBean2EJB</ejb-name>
+            <ejb-class>Negocio.PruebaBean2Bean</ejb-class>
+            <session-type>Stateful</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+        <entity>
+            <ejb-name>EJBPruebaEJB</ejb-name>
+            <home>Negocio.EJBPruebaHome</home>
+            <remote>Negocio.EJBPrueba</remote>
+            <local-home>Negocio.LocalEJBPruebaHome</local-home>
+            <local>Negocio.LocalEJBPrueba</local>
+            <ejb-class>Negocio.EJBPruebaBean</ejb-class>
+            <persistence-type>Bean</persistence-type>
+            <prim-key-class>java.lang.String</prim-key-class>
+            <reentrant>true</reentrant>
+        </entity>
+    </enterprise-beans>
+</ejb-jar>

@@ -2,11 +2,15 @@ package Controlador.Servlets;
 
 import Beans.Contacto;
 import Controlador.AgendaController;
+import Controlador.UsuarioController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +27,6 @@ import java.util.regex.Pattern;
 @Component
 @WebServlet("/anadirPersona")
 public class ServletAnadirPersona extends HttpServlet {
-    @Autowired
-    @Qualifier("controlador")
-    private AgendaController controller;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
@@ -38,6 +39,10 @@ public class ServletAnadirPersona extends HttpServlet {
             LocalDate fecha = LocalDate.parse(fechaCompleta);
             fechaCompleta = fecha.format(formatter);
             Contacto contacto = new Contacto(nombre, apellido, telefono, fechaCompleta,String.valueOf(request.getSession(false).getAttribute("user")));
+
+            ServletContext sc = getServletContext();
+            WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sc);
+            AgendaController controller = (AgendaController) wac.getBean("controlador");
             controller.anadirPersonaOnline(contacto);
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/buscarMes");

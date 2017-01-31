@@ -10,12 +10,8 @@ import java.util.Objects;
 @Repository(value = "usuarioDAO")
 public class UsuarioDAOJPA {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
-    private EntityManager em = emf.createEntityManager();
-
-    public UsuarioDAOJPA() {
-
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     public void insertarUsuario(Usuario user) {
         try {

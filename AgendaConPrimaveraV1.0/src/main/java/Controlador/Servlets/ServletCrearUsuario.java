@@ -1,11 +1,16 @@
 package Controlador.Servlets;
 
 import Beans.Usuario;
-import Modelo.Usuarios.UsuarioDAO;
+import Controlador.UsuarioController;
 import Modelo.Usuarios.UsuarioDAOJPA;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import sun.misc.Regexp;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +20,8 @@ import java.io.IOException;
 @Component
 @WebServlet("/comprobarCreacion")
 public class ServletCrearUsuario extends HttpServlet {
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
@@ -23,8 +30,11 @@ public class ServletCrearUsuario extends HttpServlet {
             if (comprobarContrasenas(password, password2)) {
                 if (comprobarUsuarioBD(usuario)) {
                     Usuario user = new Usuario(usuario, password);
-                    UsuarioDAOJPA escritorBDescribir = new UsuarioDAOJPA();
-                    escritorBDescribir.insertarUsuario(user);
+//                    usuarioController = new UsuarioDAOJPA();
+                    ServletContext sc = getServletContext();
+                    WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sc);
+                    UsuarioController usuarioController = (UsuarioController) wac.getBean("usuarioController");
+                    usuarioController.insertarUsuario(user);
                     response.sendRedirect("index.html?creacionCorrecta='ok'");
                 } else {
                     darFormatoError(response);
@@ -66,8 +76,10 @@ public class ServletCrearUsuario extends HttpServlet {
     }
 
     private boolean comprobarUsuarioBD(String usuario) {
-        UsuarioDAOJPA usuarioDAO = new UsuarioDAOJPA();
-        return !usuarioDAO.buscarUsuarioRepetido(usuario);
+        ServletContext sc = getServletContext();
+        WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sc);
+        UsuarioController usuarioController = (UsuarioController) wac.getBean("usuarioController");
+        return !usuarioController.buscarUsuarioRepetido(usuario);
     }
 
     private boolean comprobarContrasenas(String password, String password2) {

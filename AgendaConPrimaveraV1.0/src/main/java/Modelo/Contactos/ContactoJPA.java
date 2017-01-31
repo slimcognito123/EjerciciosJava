@@ -4,19 +4,17 @@ import Beans.Contacto;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
-@Repository(value = "contactoDAO")
+@Repository(value = "contactoJPA")
 public class ContactoJPA implements ContactoDAO {
+    @PersistenceContext
+    private EntityManager em;
+
     @Override
     public Boolean borrarPersona(int id) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
-        EntityManager em = emf.createEntityManager();
         try {
 
             Contacto contacto = em.find(Contacto.class, id);
@@ -32,8 +30,7 @@ public class ContactoJPA implements ContactoDAO {
 
     @Override
     public void modificarPersona(Contacto contacto) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
-        EntityManager em = emf.createEntityManager();
+
         try {
             em.getTransaction().begin();
             em.merge(contacto);
@@ -47,8 +44,6 @@ public class ContactoJPA implements ContactoDAO {
     @Override
     public ArrayList<Contacto> recuperarTodasLasPersonas(String mes, String usuario) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
-        EntityManager em = emf.createEntityManager();
 
         String query = "Select c FROM Contacto c where MONTH(c.fecha) like :mes and c.user=:usuario";
         Query pregunta = em.createQuery(query);
@@ -67,9 +62,6 @@ public class ContactoJPA implements ContactoDAO {
 
     @Override
     public ArrayList<Contacto> recuperarTodasLasPersonas(String usuario) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
-        EntityManager em = emf.createEntityManager();
-
         String query = "Select c FROM Contacto c where c.user=:usuario";
         Query pregunta = em.createQuery(query);
         pregunta.setParameter("usuario", usuario);
@@ -87,8 +79,6 @@ public class ContactoJPA implements ContactoDAO {
 
     @Override
     public Contacto recuperarPersona(int id) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
-        EntityManager em = emf.createEntityManager();
         Contacto contacto;
         try {
             contacto = em.find(Contacto.class, id);
@@ -101,8 +91,6 @@ public class ContactoJPA implements ContactoDAO {
 
     @Override
     public void guardarPersona(Contacto contacto) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgendaBD2");
-        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(contacto);

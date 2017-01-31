@@ -1,9 +1,13 @@
 package Controlador.Servlets;
 
 import Controlador.AgendaController;
+import Controlador.UsuarioController;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +28,10 @@ public class ServletEliminar extends HttpServlet {
             response.sendRedirect("index.html");
         }else {
             int id=Integer.parseInt(request.getParameter("id"));
-            AgendaController agendaController = new AgendaController();
+
+            ServletContext sc = getServletContext();
+            WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sc);
+            AgendaController agendaController = (AgendaController) wac.getBean("controlador");
             agendaController.eliminarPersonaid(id,(String) session.getAttribute("user"));
 
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/buscarMes");

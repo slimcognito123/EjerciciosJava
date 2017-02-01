@@ -14,11 +14,12 @@
     Tomcat Agenda
 </header>
 <article>
-    <form:form modelAttribute="comprobarContrasena" method="post">
+    <form:form modelAttribute="logUser" method="post">
         <label for="usuario"><spring:message code="label.usuario"/>
             <form:input type="text" name="usuario" path="usuario" /><br>
         </label>
-        <label for="password"><spring:message code="label.contrasena1"/> <form:input type="password" name="password" id="" path="password"/></label><br>
+        <label for="password"><spring:message code="label.contrasena1"/> <form:password name="password" id="" path="password"/></label><br>
+        <form:errors path="errorLogin"/>
         <input type="submit" value="enter">
     </form:form>
 </article>

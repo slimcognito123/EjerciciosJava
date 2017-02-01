@@ -1,9 +1,12 @@
 package Beans;
 
+import org.springframework.context.annotation.Scope;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@Scope("session")
 public class Usuario {
 
     @Id

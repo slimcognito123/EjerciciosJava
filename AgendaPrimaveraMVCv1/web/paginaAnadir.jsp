@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,29 +13,30 @@
     Tomcat Agenda
 </header>
 <nav>
-    <form action="/buscarMes" method="post">
+    <form action="${pageContext.request.contextPath}/search.do" method="get">
         <input type="submit" value="volver al menu">
     </form>
 </nav>
 <article>
-    <form action="anadirPersona" method="post">
+    <form action="${pageContext.request.contextPath}/createPerson.do" method="post">
         <label>
-            nombre:
+            <spring:message code="label.nombre"/>
             <input type="text" name="nombre"><br>
         </label>
         <label>
-            apellido:
-            <input type="text" name="apellido"><br>
+            <spring:message code="label.apellidos"/>
+            <input type="text" name="apellidos"><br>
         </label>
         <label>
-            telefono:
-            <input type="number" name="tlf" required><br>
+            <spring:message code="label.telefono"/>
+            <input type="number" name="telefono" required><br>
+            <form:errors code="label.msgTelefonoMalPuesto"/>
         </label>
         <label>
-            Fecha Nacimiento:
-            <input type="date" name="date"><br>
+            <spring:message code="label.fechaNacimiento"/>
+            <input type="date" name="fecha"><br>
         </label>
-        <input type="submit" value="introducir">
+        <button type="submit"><spring:message code="label.anadir"/></button>
     </form>
 </article>
 </body>

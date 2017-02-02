@@ -44,14 +44,14 @@ nav>form{
     display: inline-block;
     margin: 10px 10px;
 }
-nav>form>input, nav>form>select{
+nav>form>input, nav>form>button,nav>form>select{
     font-size: 1em;
     padding:2px;
 }
-article>form>input{
+article>form>input,article>form>button{
     padding: 10px;
 }
-article>form>input, article>form>label{
+article>form>label, article>form>input, article>form>button {
     font-size: 1.5em;
 }
 article{

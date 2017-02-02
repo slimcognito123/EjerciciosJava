@@ -13,19 +13,19 @@
     <title>busquedaOfertas</title>
 </head>
 <body>
-<spf:form modelAttribute="busquedaOferta" method="post">
+<form action="${pageContext.request.contextPath}/busquedaOfertas.do" method="post">
     <spring:message code="label.precio"/>
-    <spf:input path="precio"/><spf:errors path="precio"/>
+    <input type="text" name="precio"/><spf:errors path="precio"/>
     <br>
-    <spring:message code="label.numeroNoches"/> <spf:select path="numeroNoches">
-    <spf:option value="1">1</spf:option>
-    <spf:option value="2">2</spf:option>
-    <spf:option value="3">3</spf:option>
-    <spf:option value="4">4</spf:option>
-    <spf:option value="5">5</spf:option>
-    <spf:option value="6">6</spf:option>
-</spf:select>
+    <spring:message code="label.numeroNoches"/> <select name="numeroNoches">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+</select>
     <button type="submit">buscar</button>
-</spf:form>
+</form>
 </body>
 </html>

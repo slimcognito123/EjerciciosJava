@@ -1,8 +1,6 @@
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page import="Beans.Contacto" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="Modelo.Business.AgendaBusiness" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Patata kawaii
@@ -23,8 +21,10 @@
     Tomcat Agenda
 </header>
 <nav>
-    <form action="pantallaAnadir" method='post'><input type='submit' value='a&ntilde;adir'></form>
-    <form action="buscarMes" method='post'>
+    <form action="${pageContext.request.contextPath}/STA.do" method='post'>
+        <button type="submit"><spring:message code="label.anadir"/></button>
+    </form>
+    <form action="${pageContext.request.contextPath}/search.do" method='post'>
         <select name='mes'>
             <core:forEach begin="0" end="12" var="val">
                 <core:if test="${val==0}">
@@ -37,13 +37,15 @@
         </select>
         <input type='submit' value='buscar por mes'>
     </form>
-    <form action="/logout"><input type='submit' value='logout'></form>
+    <form action="${pageContext.request.contextPath}/logout.do">
+        <button type='submit'><spring:message code="label.logout"/></button>
+    </form>
 </nav>
 <table>
     <tr>
         <th><spring:message code="label.nombreYApellidos"/></th>
-        <th><spring:message code="label.telefono"/> </th>
-        <th><spring:message code="label.fechaNacimiento"/> </th>
+        <th><spring:message code="label.telefono"/></th>
+        <th><spring:message code="label.fechaNacimiento"/></th>
         <th></th>
         <th></th>
     </tr>
@@ -59,21 +61,18 @@
                 <core:out value="${contacto.fecha}"/>
             </td>
             <td>
-                <form action="/modificar" method="get">
-                    <%--<input type='submit' value='modificar'>--%>
-                        <button type="submit"><spring:message code="label.modificar"/> </button>
+                <form action="${pageContext.request.contextPath}/modifyContact.do" method="get">
+                    <button type="submit"><spring:message code="label.modificar"/></button>
                     <input type='hidden' name='id' value='${contacto.id}'>
                 </form>
             </td>
             <td>
-                <form action='eliminar' method='post'>
+                <form action='${pageContext.request.contextPath}/removePerson.do' method='post'>
                     <input type='hidden' name='id' value=${contacto.id}>
-                    <%--<input type='submit' value='eliminar'>--%>
-                    <button type="submit"><spring:message code="label.eliminar"/> </button>
+                    <button type="submit"><spring:message code="label.eliminar"/></button>
                 </form>
             </td>
         </tr>
-        <%--<%}%>--%>
     </core:forEach>
 </table>
 </body>

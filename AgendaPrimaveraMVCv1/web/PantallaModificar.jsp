@@ -6,23 +6,23 @@
     <title>Agenda</title>
 </head>
 <body>
-<core:set var="usuario" scope="session" value="${user}"/>
-<core:set var="contacto" value="${requestScope.contacto}"/>
+<core:set var="nombre" scope="session" value="${user}"/>
+<core:set var="contacto" value="${contacto}"/>
 <header>
     <img src="images/tomcat.png" alt="logo">
     Tomcat Agenda
 </header>
 <nav>
-    <form action="/buscarMes" method="post">
+    <form action="${pageContext.request.contextPath}/search.do" method="get">
         <input type="submit" value="volver al menu">
     </form>
 </nav>
 
 <article>
-    <form action="modificar" method="post">
+    <form action="${pageContext.request.contextPath}/modifyContact.do" method="post">
         <label>
             telefono:
-            <input type="number" name="tlf" value='${contacto.telefono}'><br>
+            <input type="number" name="telefono" value='${contacto.telefono}'><br>
         </label>
         <label>
             nombre:
@@ -30,11 +30,11 @@
         </label>
         <label>
             apellido:
-            <input type="text" name="apellido" value='${contacto.apellidos}'><br>
+            <input type="text" name="apellidos" value='${contacto.apellidos}'><br>
         </label>
         <label>
             Fecha Nacimiento:
-            <input type="date" name="date" value='${contacto.fecha}'><br>
+            <input type="date" name="fecha" value='${contacto.fecha}'><br>
         </label>
         <input type='hidden' name='id' value='${contacto.id}'>
         <input type="submit" value="modificar">

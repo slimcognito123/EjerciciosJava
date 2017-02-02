@@ -13,16 +13,21 @@
     Tomcat Agenda
 </header>
 <article>
-    <spf:form commandName="createUser" method="post">
+    <form action="${pageContext.request.contextPath}/createUser.do" method="post">
         <label for="usuario"><spring:message code="label.usuario"/></label>
-            <spf:input type="text" name="usuario" id="usuario"  path="usuario"/>
+        <input type="text" name="usuario" id="usuario" />
+        <br>
         <spf:errors path="errorCrearUsuario"/>
-       <br>
-        <label for="password"><spring:message code="label.contrasena1"/> <spf:password name="password" id="password" path="password" required="true"/></label><br>
-        <label for="password2"><spring:message code="label.contrasena2"/> <spf:password name="password2" id="password2" path="password2" required="true" /></label><br>
+        <br>
+        <label for="password"><spring:message code="label.contrasena1"/> <input type="password" name="password" id="password"
+                                                                                       required/></label><br>
+        <label for="password2"><spring:message code="label.contrasena2"/> <input type="password" name="password2" id="password2"
+                                                                                        required/></label><br>
         <spf:errors path="errorContrasenaConcordancia"/>
-        <input type="submit" value="create">
-    </spf:form>
+        <button type="submit">
+            <spring:message code="label.create"/>
+        </button>
+    </form>
 </article>
 <a href="index.jsp"><spring:message code="label.mensajeVolver"/> </a>
 </body>

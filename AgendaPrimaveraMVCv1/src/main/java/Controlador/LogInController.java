@@ -21,17 +21,19 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/login.do")
 public class LogInController {
+
     @Autowired
-    UsuarioBusiness usuarioBusiness;
+    private UsuarioBusiness usuarioBusiness;
 
     @RequestMapping(method = RequestMethod.POST)
-    public String loginForm(@ModelAttribute("logUser") Usuario usuario, BindingResult bindingResult, Model model, HttpSession session) {
+    public String loginForm(Usuario usuario, HttpSession session) {
         if (usuarioBusiness.comprobarUser(usuario.getNombre(), usuario.getPassword())) {
             session.setAttribute("user", usuario);
+            session.setAttribute("mes","%");
             session.setMaxInactiveInterval(240);
-            return "mainMenu";
+            return "redirect:search.do";
         } else {
-            bindingResult.rejectValue("errorLogin","errorLoginMensaje");
+//            bindingResult.rejectValue("errorLogin","errorLoginMensaje");
             return "index";
         }
     }

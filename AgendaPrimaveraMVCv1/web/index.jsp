@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
@@ -14,14 +13,15 @@
     Tomcat Agenda
 </header>
 <article>
-    <form:form modelAttribute="logUser" method="post">
-        <label for="usuario"><spring:message code="label.usuario"/>
-            <form:input type="text" name="usuario" path="usuario" /><br>
+    <form action="${pageContext.request.contextPath}/login.do" method="post">
+        <label for="nombre"><spring:message code="label.usuario"/>
+            <input type="text" name="nombre" id="nombre"/><br>
         </label>
-        <label for="password"><spring:message code="label.contrasena1"/> <form:password name="password" id="" path="password"/></label><br>
+        <label for="password"><spring:message code="label.contrasena1"/> <input type="password" name="password"
+                                                                                id="password"/></label><br>
         <form:errors path="errorLogin"/>
         <input type="submit" value="enter">
-    </form:form>
+    </form>
 </article>
 <a href="crearUsuario.jsp"><spring:message code="label.preguntaCrearUsuario"/> </a>
 </body>

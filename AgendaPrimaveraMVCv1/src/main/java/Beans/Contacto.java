@@ -60,4 +60,20 @@ public class Contacto {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 }

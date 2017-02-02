@@ -16,7 +16,7 @@ public class UsuarioDAOJPA {
     private EntityManager em;
 
     public void insertarUsuario(Usuario user) {
-            em.persist(user);
+        em.persist(user);
     }
 
 
@@ -25,21 +25,23 @@ public class UsuarioDAOJPA {
         Query pregunta = em.createQuery(query);
         pregunta.setParameter("usuario", usuario);
         List resultados = null;
-            resultados = pregunta.getResultList();
-            System.out.println("\033[35m" + resultados);
-        if (resultados != null) {
+        resultados = pregunta.getResultList();
+        System.out.println("\033[35m" + resultados);
+        if (resultados.size()==0) {
+            System.out.println("\033[34m no tengo usuariooooos");
             return false;
         }
         return true;
     }
 
     public boolean comprobarUser(String user, String pass) {
-        String query = "Select user FROM Usuario user where user.nombre=:usuario";
+        String query = "Select user FROM Beans.Usuario user where user.nombre=:usuario";
         Query pregunta = em.createQuery(query);
         pregunta.setParameter("usuario", user);
-        List<Usuario> comprobar = pregunta.getResultList();
+        Usuario comprobar = (Usuario) pregunta.getSingleResult();
         System.out.println(comprobar);
-        if (comprobar != null && Objects.equals(comprobar.get(0).getPassword(), pass)) {
+//        System.out.println(Objects.equals(comprobar.get(0).getPassword(), pass));
+        if (comprobar!=null && Objects.equals(comprobar.getPassword(), pass)) {
             return true;
         } else {
             return false;

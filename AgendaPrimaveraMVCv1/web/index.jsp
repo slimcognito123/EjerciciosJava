@@ -10,7 +10,7 @@
 <body>
 <header>
     <img src="images/tomcat.png" alt="logo">
-    Tomcat Agenda
+    Tareas S.A.
 </header>
 <article>
     <form action="${pageContext.request.contextPath}/login.do" method="post">

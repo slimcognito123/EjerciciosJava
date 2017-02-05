@@ -1,7 +1,7 @@
-package Modelo.Contactos;
+package modelo.contactos;
 
 
-import Beans.Contacto;
+import beans.Contacto;
 
 import java.util.ArrayList;
 

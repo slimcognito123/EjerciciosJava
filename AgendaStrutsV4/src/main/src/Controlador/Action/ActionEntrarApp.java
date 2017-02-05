@@ -1,7 +1,7 @@
-package Controlador.Action;
+package controlador.action;
 
-import Beans.Usuario;
-import Modelo.Usuarios.UsuarioDAOJPA;
+import beans.Usuario;
+import modelo.usuarios.UsuarioDAOJPA;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.ServletActionContext;

@@ -7,59 +7,60 @@
 <struts>
     <constant name="struts.devMode" value="true"/>
     <constant name="struts.configuration.xml.reload" value="true"/>
-    <package strict-method-invocation="false" name="Controlador" extends="struts-default">
+    <package strict-method-invocation="false" name="controlador" extends="struts-default">
         <!--<interceptors>-->
         <!--<interceptor name="log" class="InterceptorLog"/>-->
         <!--</interceptors>-->
         <!--<default-interceptor-ref name="myInterceptorStack"/>-->
         <interceptors>
-            <interceptor name="interceptorCreateUser" class="Controlador.Interceptors.InterceptorCrearUser"/>
-            <interceptor name="InterceptorEntrarApp" class="Controlador.Interceptors.InterceptorEntrarApp"/>
-            <interceptor name="interceptorAnadirContacto" class="Controlador.Interceptors.InterceptorAnadirPersona"/>
-            <interceptor name="InterceptorComprobarUsuarioConectado" class="Controlador.Interceptors.InterceptorComprobarSession"/>
+            <interceptor name="interceptorCreateUser" class="controlador.interceptors.InterceptorCrearUser"/>
+            <interceptor name="InterceptorEntrarApp" class="controlador.interceptors.InterceptorEntrarApp"/>
+            <interceptor name="interceptorAnadirContacto" class="controlador.interceptors.InterceptorAnadirPersona"/>
+            <interceptor name="InterceptorComprobarUsuarioConectado" class="controlador.interceptors.InterceptorComprobarSession"/>
         </interceptors>
         <default-action-ref name="underConstruction"/>
-        <action name="createUser" class="Controlador.Action.ActionCreateUser">
+        <action name="createUser" class="controlador.action.ActionCreateUser">
             <interceptor-ref name="interceptorCreateUser"/>
             <result name="success">/index.html</result>
             <result name="input">/crearUsuario.html</result>
             <result name="error">/crearUsuario.html</result>
+            <result name="login">/crearUsuario.html</result>
         </action>
-        <action name="anadirPersona" class="Controlador.Action.ActionAnadirPersona">
+        <action name="anadirPersona" class="controlador.action.ActionAnadirPersona">
             <interceptor-ref name="interceptorAnadirContacto"/>
             <result name="success">/mainMenu.jsp</result>
             <result name="input">/paginaAnadir.html</result>
         </action>
-        <action name="comprobarContrasena" class="Controlador.Action.ActionEntrarApp">
+        <action name="comprobarContrasena" class="controlador.action.ActionEntrarApp">
             <interceptor-ref name="InterceptorEntrarApp" />
             <result name="success">/mainMenu.jsp</result>
             <result name="input">/index.html</result>
         </action>
-        <action name="logout" class="Controlador.Action.ActionLogOut">
+        <action name="logout" class="controlador.action.ActionLogOut">
             <result name="success">/index.html</result>
         </action>
 
-        <action name="buscarMes" class="Controlador.Action.ActionBuscarPorMes">
+        <action name="buscarMes" class="controlador.action.ActionBuscarPorMes">
             <interceptor-ref name="InterceptorComprobarUsuarioConectado"/>
             <result name="success">/mainMenu.jsp</result>
             <result name="error">/index.html</result>
         </action>
-        <action name="eliminar" class="Controlador.Action.ActionEliminar">
+        <action name="eliminar" class="controlador.action.ActionEliminar">
             <interceptor-ref name="InterceptorComprobarUsuarioConectado"/>
             <result name="success">/mainMenu.jsp</result>
             <result name="error">/index.html</result>
         </action>
-        <action name="enviarAnadir" class="Controlador.Action.ActionEnviarAnadir">
+        <action name="enviarAnadir" class="controlador.action.ActionEnviarAnadir">
             <interceptor-ref name="InterceptorComprobarUsuarioConectado"/>
             <result name="success">/mainMenu.jsp</result>
             <result name="error">/index.html</result>
         </action>
-        <action name="enviarModificar" class="Controlador.Action.ActionModificarPagina">
+        <action name="enviarModificar" class="controlador.action.ActionModificarPagina">
             <interceptor-ref name="InterceptorComprobarUsuarioConectado"/>
             <result name="success">/PantallaModificar.jsp</result>
             <result name="error">/index.html</result>
         </action>
-        <action name="modificar" class="Controlador.Action.ActionModificarDatos">
+        <action name="modificar" class="controlador.action.ActionModificarDatos">
             <interceptor-ref name="InterceptorComprobarUsuarioConectado"/>
             <result name="success">/mainMenu.jsp</result>
             <result name="error">/index.html</result>

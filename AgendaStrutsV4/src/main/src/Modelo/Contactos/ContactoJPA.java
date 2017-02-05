@@ -1,6 +1,6 @@
-package Modelo.Contactos;
+package modelo.contactos;
 
-import Beans.Contacto;
+import beans.Contacto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

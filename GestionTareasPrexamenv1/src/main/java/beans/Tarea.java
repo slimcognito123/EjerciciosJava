@@ -1,6 +1,7 @@
 package beans;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @SequenceGenerator(name = "generarTareas", sequenceName = "IdTarea")
@@ -14,7 +15,7 @@ public class Tarea {
     private Boolean realizada=false;
     @OneToOne
     private Usuario usuarioRealiza;
-    private String fechaRealizacion;
+    private LocalDate fechaRealizacion;
 
     public Tarea() {
     }
@@ -60,11 +61,11 @@ public class Tarea {
         this.usuarioRealiza = usuarioRealiza;
     }
 
-    public String getFechaRealizacion() {
+    public LocalDate getFechaRealizacion() {
         return fechaRealizacion;
     }
 
-    public void setFechaRealizacion(String fechaRealizacion) {
+    public void setFechaRealizacion(LocalDate fechaRealizacion) {
         this.fechaRealizacion = fechaRealizacion;
     }
 

@@ -1,8 +1,8 @@
-package Controlador;
+package controlador;
 
-import Beans.Contacto;
-import Modelo.Factories.FactoryPersonaDAO;
-import Modelo.Contactos.ContactoDAO;
+import beans.Contacto;
+import modelo.factories.FactoryPersonaDAO;
+import modelo.contactos.ContactoDAO;
 
 import java.util.ArrayList;
 

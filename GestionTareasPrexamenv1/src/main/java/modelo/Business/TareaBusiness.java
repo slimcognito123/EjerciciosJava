@@ -40,4 +40,8 @@ public class TareaBusiness {
     public ArrayList<Tarea> recuperarTodasLasTareas(){
         return tareaDAO.recuperarTodasLasTareas();
     }
+
+    public Tarea recuperarTarea(int id) {
+        return  tareaDAO.recuperarTarea(id);
+    }
 }

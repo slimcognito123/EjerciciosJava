@@ -1,4 +1,4 @@
-package Controlador.Interceptors;
+package controlador.interceptors;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;

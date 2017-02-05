@@ -1,6 +1,7 @@
 package modelo.DAO;
 
 import beans.Tarea;
+import beans.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -49,5 +50,15 @@ public class TareaDAO {
             return new ArrayList<>();
         }
         return resultados;
+    }
+
+    /*public Tarea recuperarTarea(int id) {
+        String query = "Select tarea FROM beans.Tarea tarea where tarea.idTarea=:id";
+        Query pregunta = entityManager.createQuery(query);
+        pregunta.setParameter("id", id);
+        return(Tarea) pregunta.getSingleResult();
+    }*/
+    public Tarea recuperarTarea(int idTarea){
+        return entityManager.find(Tarea.class,idTarea);
     }
 }

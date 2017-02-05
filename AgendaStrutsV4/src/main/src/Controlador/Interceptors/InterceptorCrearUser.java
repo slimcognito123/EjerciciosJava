@@ -1,7 +1,6 @@
-package Controlador.Interceptors;
+package controlador.interceptors;
 
-import Beans.Usuario;
-import Modelo.Usuarios.UsuarioDAOJPA;
+import modelo.usuarios.UsuarioDAOJPA;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import org.apache.struts2.ServletActionContext;

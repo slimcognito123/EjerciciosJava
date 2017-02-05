@@ -1,6 +1,6 @@
-package Modelo.Usuarios;
+package modelo.usuarios;
 
-import Beans.Usuario;
+import beans.Usuario;
 
 import javax.persistence.*;
 import java.util.List;
@@ -45,7 +45,8 @@ public class UsuarioDAOJPA {
             em.close();
             System.out.println(e);
         }
-        if (resultados != null) {
+
+        if (resultados == null || resultados.isEmpty()) {
             return false;
         }
         return true;

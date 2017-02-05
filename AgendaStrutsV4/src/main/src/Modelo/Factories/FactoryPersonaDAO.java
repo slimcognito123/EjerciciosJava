@@ -1,7 +1,7 @@
-package Modelo.Factories;
+package modelo.factories;
 
-import Modelo.Contactos.ContactoDAO;
-import Modelo.Contactos.ContactoJPA;
+import modelo.contactos.ContactoDAO;
+import modelo.contactos.ContactoJPA;
 
 public class FactoryPersonaDAO {
 

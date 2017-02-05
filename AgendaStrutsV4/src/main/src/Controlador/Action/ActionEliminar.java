@@ -1,6 +1,6 @@
-package Controlador.Action;
+package controlador.action;
 
-import Controlador.AgendaController;
+import controlador.AgendaController;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 

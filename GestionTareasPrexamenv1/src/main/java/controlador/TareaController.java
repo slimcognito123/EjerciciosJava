@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -39,11 +40,12 @@ public class TareaController {
         return "redirect:buscarTodos.do";
     }
     @RequestMapping(value = "/actualizar.do",method = RequestMethod.POST)
-    public String actualizarTarea(Tarea tarea, HttpSession session){
+    public String actualizarTarea(@RequestParam("id") int id, HttpSession session){
         if(session==null) return "index";
         Usuario usuario= (Usuario) session.getAttribute("usuario");
+        Tarea tarea=tareaBusiness.recuperarTarea(id);
         tarea.setRealizada(true);
-        tarea.setFechaRealizacion(String.valueOf(LocalDate.now()));
+        tarea.setFechaRealizacion(LocalDate.now());
         tarea.setUsuarioRealiza(usuario);
         tareaBusiness.actualizarTarea(tarea);
         return "redirect:/buscarTodos.do";

@@ -35,7 +35,7 @@ public class UsuarioDAO {
         return false;
     }
 
-    private Usuario getUsuario(String nombreUsuario) {
+    /*private Usuario getUsuario(String nombreUsuario) {
         String query = "Select user FROM Usuario user where user.nombreUsuario=:usuario";
         Query pregunta = entityManager.createQuery(query);
         pregunta.setParameter("usuario", nombreUsuario);
@@ -44,6 +44,17 @@ public class UsuarioDAO {
             comprobar = (Usuario) pregunta.getSingleResult();
         }catch(Exception e){
             System.out.println("\033[35m no hay usuarios en BD"+e);
+        }
+        return comprobar;
+    }*/
+
+    //funcionan igual ambos getUsuario
+    private Usuario getUsuario(String nombreUsuario){
+        Usuario comprobar =null;
+        try {
+            comprobar=entityManager.find(Usuario.class,nombreUsuario);
+        }catch (Exception e){
+            System.out.println("no hay usuarios");
         }
         return comprobar;
     }

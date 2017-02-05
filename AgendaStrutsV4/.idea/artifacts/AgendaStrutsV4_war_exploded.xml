@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="AgendaStrutsV4:war exploded">
-    <output-path>$PROJECT_DIR$/target/AgendaStrutsV4</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/AgendaStrutsV4_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -14,7 +14,6 @@
           <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.3.2" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
-          <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: javax.el:javax.el-api:3.0.0" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.2.5.Final" />
@@ -35,9 +34,7 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:6.0.4" />
         </element>
       </element>
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/AgendaStrutsV4/META-INF/MANIFEST.MF" />
-      </element>
+      <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2" />
       <element id="javaee-facet-resources" facet="AgendaStrutsV4/web/Web" />
     </root>
   </artifact>

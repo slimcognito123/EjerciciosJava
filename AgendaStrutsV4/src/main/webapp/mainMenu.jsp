@@ -1,7 +1,7 @@
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="Beans.Contacto" %>
+<%@ page import="beans.Contacto" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="Controlador.AgendaController" %>
+<%@ page import="controlador.AgendaController" %>
 <%--
   Created by IntelliJ IDEA.
   User: Patata kawaii

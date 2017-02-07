@@ -1,0 +1,85 @@
+*{
+    padding: 0%;
+    margin: 0 auto;
+}
+body{
+    text-align: center;
+    background: #49c0f0; /* Old browsers */
+
+}
+header{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffd65e+0,febf04+100;Yellow+3D+%232 */
+    background: #ffd65e; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #ffd65e 0%,#febf04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+    padding: 5px;
+    font-size: 3em;
+    color: red;
+    text-shadow: 0.1em 0.1em 0.1em goldenrod;
+}
+
+td,th{
+    padding:10px;
+    border-color: black;
+    border-collapse: collapse;
+}
+tr:nth-child(even){
+    background: lightsteelblue;
+    color: white;
+}
+tr:nth-child(odd){
+    background: darkred;
+    color: whitesmoke;
+}
+nav{
+    margin: 10px 0px;
+    background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%);
+}
+nav>form{
+    display: inline-block;
+    margin: 10px 10px;
+}
+nav>form>input, nav>form>button{
+    font-size: 1em;
+    padding:2px;
+}
+article>form>input,article>form>button{
+    padding: 10px;
+}
+article>form>label, article>form>input, article>form>button {
+    font-size: 1.5em;
+}
+article{
+    margin: 20px 30%;
+    padding:20px;
+    border:solid red 2px;
+    border-radius: 20px;
+}
+a{
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #1519ff;
+}
+a:hover{
+    color: #FFF;
+}
+div{
+    color: red;
+    font-size: large;
+}
+img{
+    width: 100px;
+    height: 100px;
+}
+section:nth-child(even){
+    background: #4598f0;
+}
+section:nth-child(odd){
+    background: #febf04;
+}
+section{
+    margin: 7px 0;
+    padding: 5px 0;
+}
